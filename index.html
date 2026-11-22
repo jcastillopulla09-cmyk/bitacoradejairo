@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="es" data-theme="light" data-device="desktop" data-input="mouse">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bitácora de Jairo — Astronomía, astrofísica y exploración espacial</title>
+  <meta name="description" content="Divulgación científica rigurosa sobre astronomía, astrofísica y exploración espacial: artículos con ecuaciones, noticias en tiempo real y un laboratorio interactivo de código abierto. Por Jairo Castillo (Ecuador).">
+  <meta name="author" content="Jairo Castillo">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" id="meta-theme-color" content="#FFFFFF">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Bitácora">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Open Graph / redes sociales (vista previa al compartir desde Instagram, WhatsApp, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bitácora de Jairo">
+  <meta property="og:title" content="Bitácora de Jairo — Astronomía, astrofísica y exploración espacial">
+  <meta property="og:description" content="Artículos rigurosos, radar espacial en vivo y laboratorio interactivo «Mens et Manus».">
+  <meta property="og:image" content="https://cdn.esawebb.org/archives/images/screen/weic2209a.jpg">
+  <meta property="og:locale" content="es_EC">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Identidad: logo oficial (con fallback SVG automático si aún no existe) -->
+  <link rel="icon" type="image/png" href="assets/logo-bitacora.png" id="favicon">
+  <link rel="apple-touch-icon" href="assets/logo-bitacora.png" id="apple-touch-icon">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Tipografía -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <!-- KaTeX (ecuaciones) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Arranque crítico: tema guardado + fallbacks de imagen, antes del primer pintado -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var theme = 'light', lang = 'es';
+      try { theme = localStorage.getItem('bj-theme') || 'light'; lang = localStorage.getItem('bj-lang') || 'es'; } catch (e) {}
+      root.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+      root.lang = lang === 'en' ? 'en' : 'es';
+      var meta = document.getElementById('meta-theme-color');
+      if (meta) meta.setAttribute('content', theme === 'dark' ? '#050505' : '#FFFFFF');
+
+      var LOGO_SVG = 'data:image/svg+xml,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
+        '<rect width="64" height="64" rx="32" fill="#0A0A0A"/>' +
+        '<ellipse cx="32" cy="32" rx="25" ry="9" fill="none" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="1.2" transform="rotate(-24 32 32)"/>' +
+        '<circle cx="53.5" cy="22.5" r="2.4" fill="#FFFFFF"/>' +
+        '<text x="32" y="40.5" text-anchor="middle" font-family="Georgia,Times New Roman,serif" font-size="23" font-style="italic" fill="#FFFFFF">BJ</text>' +
+        '</svg>');
+
+      window.BJ = {
+        LOGO_SVG: LOGO_SVG,
+        /** Logo oficial ausente → monograma SVG (nunca una imagen rota). */
+        logoFail: function (img) { img.onerror = null; img.src = LOGO_SVG; img.classList.add('is-fallback'); },
+        /** Imagen externa caída → tarjeta tipográfica minimalista. */
+        imgFail: function (img) {
+          img.onerror = null;
+          var box = document.createElement('div');
+          box.className = 'img-fallback';
+          box.setAttribute('role', 'img');
+          box.setAttribute('aria-label', img.alt || '');
+          var k = document.createElement('span'); k.className = 'img-fallback__kicker';
+          k.textContent = root.lang === 'en' ? 'Image unavailable' : 'Imagen no disponible';
+          var t = document.createElement('span'); t.className = 'img-fallback__title';
+          t.textContent = img.alt || 'Bitácora de Jairo';
+          box.appendChild(k); box.appendChild(t);
+          if (img.className) box.className += ' ' + img.className;
+          img.replaceWith(box);
+        }
+      };
+
+      // Favicon: si el PNG oficial no existe todavía, usa el monograma SVG.
+      var probe = new Image();
+      probe.onerror = function () {
+        ['favicon', 'apple-touch-icon'].forEach(function (id) {
+          var l = document.getElementById(id);
+          if (l) { l.href = LOGO_SVG; if (id === 'favicon') l.type = 'image/svg+xml'; }
+        });
+      };
+      probe.src = 'assets/logo-bitacora.png';
+    })();
+  </script>
+  <script src="js/device.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <!-- Iconografía (sprite SVG, trazo fino) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m20 20-3.6-3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5ZM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 12 18 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></symbol>
+      <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9.5 3.5h5M10.5 3.5v5.2L5.2 18.2A1.8 1.8 0 0 0 6.8 21h10.4a1.8 1.8 0 0 0 1.6-2.8l-5.3-9.5V3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><path d="M7.6 15h8.8" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="7.8" r="1.1" fill="currentColor"/></symbol>
+      <symbol id="i-ext" viewBox="0 0 24 24"><path d="M8 16 16.5 7.5M9.5 7.5h7v7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11m0-11-11 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5.5m5.5-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5.5m-6 5.5 6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4.5v4h-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5Z" fill="currentColor"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5.5h2.8v13H8zM13.2 5.5H16v13h-2.8z" fill="currentColor"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2.8a9.4 9.4 0 0 0-3 18.3c.5.1.6-.2.6-.5v-1.7c-2.6.6-3.2-1.1-3.2-1.1-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1 2.8.8.1-.6.3-1 .6-1.3-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.9 1-2.5-.1-.3-.4-1.2.1-2.5 0 0 .8-.3 2.6 1a9 9 0 0 1 4.7 0c1.8-1.3 2.6-1 2.6-1 .5 1.3.2 2.2.1 2.5.6.6 1 1.5 1 2.5 0 3.6-2.2 4.4-4.3 4.6.3.3.6.8.6 1.6v2.4c0 .3.2.6.7.5A9.4 9.4 0 0 0 12 2.8Z" fill="currentColor"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13.5m-5.5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
+
+  <!-- ═══════════════ CABECERA (desktop: navbar completa · móvil: header compacto) ═══════════════ -->
+  <header class="topbar" id="topbar">
+    <div class="topbar__inner container">
+      <a class="brand" href="#inicio" aria-label="Bitácora de Jairo — inicio">
+        <img class="brand__logo" src="assets/logo-bitacora.png" alt="" width="36" height="36" onerror="BJ.logoFail(this)">
+        <span class="brand__name">Bitácora <em>de Jairo</em></span>
+        <span class="brand__name brand__name--compact">BITÁCORA DE JAIRO</span>
+      </a>
+
+      <nav class="topnav" aria-label="Principal">
+        <a href="#articulos" data-nav="articulos" data-i18n="nav.articles">Artículos</a>
+        <a href="#radar" data-nav="radar" data-i18n="nav.radar">Radar</a>
+        <a href="#lab" data-nav="lab" data-i18n="nav.lab">Laboratorio</a>
+        <a href="#reels" data-nav="reels" data-i18n="nav.reels">Reels</a>
+        <a href="#acerca" data-nav="acerca" data-i18n="nav.about">Acerca</a>
+      </nav>
+
+      <div class="topbar__tools">
+        <div class="quicksearch" role="search">
+          <svg class="quicksearch__icon" aria-hidden="true"><use href="#i-search"/></svg>
+          <input id="global-search" type="search" autocomplete="off" spellcheck="false"
+                 aria-label="Buscar" aria-controls="search-results" aria-expanded="false"
+                 data-i18n-attr="placeholder:search.placeholder;aria-label:search.label" placeholder="Buscar en la bitácora">
+          <kbd class="quicksearch__kbd" aria-hidden="true">/</kbd>
+          <div class="quicksearch__results" id="search-results" role="listbox" hidden></div>
+        </div>
+        <button class="icon-btn search-trigger" type="button" id="search-trigger" data-i18n-attr="aria-label:search.label" aria-label="Buscar">
+          <svg aria-hidden="true"><use href="#i-search"/></svg>
+        </button>
+        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <span aria-hidden="true">|</span>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="icon-btn theme-toggle" type="button" id="theme-toggle" data-i18n-attr="aria-label:theme.toggle" aria-label="Cambiar tema claro / oscuro">
+          <svg class="theme-toggle__sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="theme-toggle__moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ═══════════════ PORTADA EDITORIAL ═══════════════ -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="masthead">
+          <span class="mono" data-i18n="hero.kicker">Astronomía · Astrofísica · Exploración espacial</span>
+          <span class="mono masthead__date" id="masthead-date"></span>
+        </div>
+        <div class="hero__grid" id="hero">
+          <figure class="hero__media skeleton" aria-hidden="true"></figure>
+          <div class="hero__text">
+            <p class="eyebrow mono skeleton-line" style="width:40%">&nbsp;</p>
+            <h1 class="hero__title" id="hero-title"><span class="skeleton-line">&nbsp;</span></h1>
+            <p class="hero__dek skeleton-line">&nbsp;</p>
+          </div>
+        </div>
+        <noscript><p class="noscript">Esta bitácora usa JavaScript para cargar los artículos, el radar y el laboratorio.</p></noscript>
+      </div>
+    </section>
+
+    <!-- ═══════════════ ARCHIVO DE ARTÍCULOS ═══════════════ -->
+    <section class="section" id="articulos" aria-labelledby="articles-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow mono"><span class="section__num">01</span> <span data-i18n="articles.kicker">Archivo</span></p>
+          <h2 class="section__title" id="articles-title" data-i18n="articles.title">Artículos de la bitácora</h2>
+          <p class="section__lede" data-i18n="articles.lede">Divulgación rigurosa con ecuaciones reales y fuentes verificables. Léelos aquí mismo o salta a la referencia original.</p>
+        </header>
+
+        <div class="archive-tools">
+          <label class="field">
+            <svg aria-hidden="true"><use href="#i-search"/></svg>
+            <input id="archive-search" type="search" autocomplete="off" data-i18n-attr="placeholder:articles.search;aria-label:articles.search" placeholder="Buscar artículos…">
+          </label>
+          <div class="chips" role="group" aria-label="Categorías" id="category-chips">
+            <button type="button" class="chip" data-cat="all" aria-pressed="true" data-i18n="cat.all">Todos</button>
+            <button type="button" class="chip" data-cat="cosmology" aria-pressed="false" data-i18n="cat.cosmology">Cosmología</button>
+            <button type="button" class="chip" data-cat="exoplanets" aria-pressed="false" data-i18n="cat.exoplanets">Exoplanetas</button>
+            <button type="button" class="chip" data-cat="telescopes" aria-pressed="false" data-i18n="cat.telescopes">Telescopios</button>
+            <button type="button" class="chip" data-cat="physics" aria-pressed="false" data-i18n="cat.physics">Física</button>
+          </div>
+        </div>
+
+        <div class="article-grid" id="article-grid" aria-live="polite"></div>
+        <p class="empty-state" id="article-empty" hidden data-i18n="articles.empty">Ningún artículo coincide con tu búsqueda.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ RADAR ESPACIAL ═══════════════ -->
+    <section class="section section--surface" id="radar" aria-labelledby="radar-title">
+      <div class="container">
+        <header class="section__head section__head--split">
+          <div>
+            <p class="eyebrow mono"><span class="section__num">02</span> <span data-i18n="radar.kicker">Radar espacial</span></p>
+            <h2 class="section__title" id="radar-title" data-i18n="radar.title">Lo último en el espacio, en tiempo real</h2>
+            <p class="section__lede" data-i18n="radar.lede">Titulares reales de agencias y medios especializados. Toca una tarjeta para una vista rápida o la flecha ↗ para ir a la fuente.</p>
+          </div>
+          <div class="radar-status">
+            <span class="live-dot" id="live-dot" aria-hidden="true"></span>
+            <span class="mono" id="radar-status" data-i18n="radar.loading">Conectando…</span>
+            <button class="icon-btn icon-btn--sm" type="button" id="radar-refresh" data-i18n-attr="aria-label:radar.refresh" aria-label="Actualizar">
+              <svg aria-hidden="true"><use href="#i-refresh"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="radar-layout">
+          <article class="apod" id="apod" aria-live="polite">
+            <div class="apod__media skeleton"></div>
+            <div class="apod__body">
+              <p class="eyebrow mono" data-i18n="apod.kicker">NASA · Imagen astronómica del día</p>
+              <h3 class="apod__title skeleton-line">&nbsp;</h3>
+            </div>
+          </article>
+
+          <div class="news-track" id="news-track" aria-live="polite">
+            <div class="news-card news-card--skeleton"><div class="news-card__media skeleton"></div><div class="news-card__body"><span class="skeleton-line">&nbsp;</span><span class="skeleton-line">&nbsp;</span></div></div>
+            <div class="news-card news-card--skeleton"><div class="news-card__media skeleton"></div><div class="news-card__body"><span class="skeleton-line">&nbsp;</span><span class="skeleton-line">&nbsp;</span></div></div>
+            <div class="news-card news-card--skeleton"><div class="news-card__media skeleton"></div><div class="news-card__body"><span class="skeleton-line">&nbsp;</span><span class="skeleton-line">&nbsp;</span></div></div>
+            <div class="news-card news-card--skeleton"><div class="news-card__media skeleton"></div><div class="news-card__body"><span class="skeleton-line">&nbsp;</span><span class="skeleton-line">&nbsp;</span></div></div>
+          </div>
+        </div>
+        <p class="credit-line mono"><span data-i18n="radar.credit">Datos:</span> <a href="https://www.spaceflightnewsapi.net/" target="_blank" rel="noopener noreferrer">Spaceflight News API</a> · <a href="https://apod.nasa.gov/apod/" target="_blank" rel="noopener noreferrer">NASA APOD</a></p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ LABORATORIO «MENS ET MANUS» ═══════════════ -->
+    <section class="section" id="lab" aria-labelledby="lab-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow mono"><span class="section__num">03</span> <span data-i18n="lab.kicker">Laboratorio · Mens et Manus</span></p>
+          <h2 class="section__title" id="lab-title" data-i18n="lab.title">Mente y mano: física que se toca</h2>
+          <p class="section__lede" data-i18n="lab.lede">Simuladores de código abierto en HTML5 Canvas. Mueve los parámetros y observa la física responder en tiempo real.</p>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="Simuladores">
+          <button class="tab" role="tab" id="tab-transit" aria-controls="sim-transit" aria-selected="true" data-sim="transit" data-i18n="lab.tab.transit">Tránsito de exoplanetas</button>
+          <button class="tab" role="tab" id="tab-redshift" aria-controls="sim-redshift" aria-selected="false" tabindex="-1" data-sim="redshift" data-i18n="lab.tab.redshift">Corrimiento al rojo (z)</button>
+        </div>
+
+        <!-- Simulador 1: Tránsito -->
+        <div class="lab" id="sim-transit" role="tabpanel" aria-labelledby="tab-transit">
+          <div class="lab__stage">
+            <canvas id="transit-canvas" aria-label="Animación del tránsito de un planeta frente a su estrella" role="img"></canvas>
+            <div class="lab__overlay mono">
+              <span data-i18n="lab.transit.stage">Vista del observador · escala real</span>
+              <button class="icon-btn icon-btn--sm" type="button" id="transit-play" data-i18n-attr="aria-label:lab.pause" aria-label="Pausar">
+                <svg aria-hidden="true"><use href="#i-pause"/></svg>
+              </button>
+            </div>
+            <p class="lab__hint mono" data-i18n="lab.transit.hint">Arrastra sobre la estrella para mover el planeta</p>
+          </div>
+          <div class="lab__panel">
+            <div class="lab__chart">
+              <div class="lab__chart-head mono"><span data-i18n="lab.transit.chart">Curva de luz normalizada</span><span id="transit-phase">—</span></div>
+              <canvas id="transit-chart" aria-label="Curva de luz en tiempo real" role="img"></canvas>
+            </div>
+            <dl class="readouts">
+              <div><dt data-i18n="lab.transit.depth">Profundidad ΔF</dt><dd id="ro-depth">—</dd></div>
+              <div><dt>k = R<sub>p</sub>/R<sub>*</sub></dt><dd id="ro-k">—</dd></div>
+              <div><dt data-i18n="lab.transit.state">Estado</dt><dd id="ro-state">—</dd></div>
+            </dl>
+            <div class="presets" role="group" aria-label="Presets">
+              <button type="button" class="chip" data-preset="hotjupiter" data-i18n="lab.preset.hj">Júpiter caliente</button>
+              <button type="button" class="chip" data-preset="earth" data-i18n="lab.preset.earth">Tierra</button>
+              <button type="button" class="chip" data-preset="trappist" data-i18n="lab.preset.trappist">TRAPPIST-1e</button>
+            </div>
+            <div class="controls">
+              <label class="slider">
+                <span class="slider__label"><span data-i18n="lab.transit.rp">Radio del planeta</span> <span class="mono">R<sub>p</sub></span></span>
+                <output class="slider__value mono" id="out-rp" for="in-rp">—</output>
+                <input type="range" id="in-rp" min="0.3" max="25" step="0.01" value="14.6">
+              </label>
+              <label class="slider">
+                <span class="slider__label"><span data-i18n="lab.transit.rs">Radio de la estrella</span> <span class="mono">R<sub>*</sub></span></span>
+                <output class="slider__value mono" id="out-rs" for="in-rs">—</output>
+                <input type="range" id="in-rs" min="0.08" max="2" step="0.001" value="1">
+              </label>
+              <label class="slider">
+                <span class="slider__label"><span data-i18n="lab.transit.b">Inclinación · parámetro de impacto</span> <span class="mono">b</span></span>
+                <output class="slider__value mono" id="out-b" for="in-b">—</output>
+                <input type="range" id="in-b" min="0" max="1.2" step="0.01" value="0.3">
+              </label>
+              <label class="slider">
+                <span class="slider__label"><span data-i18n="lab.transit.speed">Velocidad de la animación</span></span>
+                <output class="slider__value mono" id="out-speed" for="in-speed">—</output>
+                <input type="range" id="in-speed" min="0.25" max="3" step="0.05" value="1">
+              </label>
+            </div>
+            <p class="lab__formula" id="transit-formula">$$\Delta F = \left(\frac{R_p}{R_*}\right)^2$$</p>
+          </div>
+        </div>
+
+        <!-- Simulador 2: Corrimiento al rojo -->
+        <div class="lab" id="sim-redshift" role="tabpanel" aria-labelledby="tab-redshift" hidden>
+          <div class="lab__stage lab__stage--spectrum">
+            <canvas id="redshift-canvas" aria-label="Espectro de una galaxia desplazándose del visible al infrarrojo" role="img"></canvas>
+            <div class="lab__overlay mono"><span data-i18n="lab.z.stage">Espectro observado · 0,1 – 30 µm</span></div>
+          </div>
+          <div class="lab__panel">
+            <div class="lab__chart">
+              <div class="lab__chart-head mono"><span data-i18n="lab.z.chart">Factor de escala a = 1/(1+z)</span><span id="z-age">—</span></div>
+              <canvas id="redshift-chart" aria-label="Gráfica del factor de escala frente al corrimiento al rojo" role="img"></canvas>
+            </div>
+            <dl class="readouts">
+              <div><dt>z</dt><dd id="ro-z">—</dd></div>
+              <div><dt>a = 1/(1+z)</dt><dd id="ro-a">—</dd></div>
+              <div><dt data-i18n="lab.z.lya">Lyman-α observada</dt><dd id="ro-lya">—</dd></div>
+            </dl>
+            <div class="presets" role="group" aria-label="Objetos" id="z-presets"></div>
+            <div class="controls">
+              <label class="slider">
+                <span class="slider__label"><span data-i18n="lab.z.slider">Corrimiento al rojo</span> <span class="mono">z</span></span>
+                <output class="slider__value mono" id="out-z" for="in-z">—</output>
+                <input type="range" id="in-z" min="0" max="14.5" step="0.01" value="0">
+              </label>
+            </div>
+            <p class="lab__note" id="z-note"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ REELS ═══════════════ -->
+    <section class="section section--surface" id="reels" aria-labelledby="reels-title">
+      <div class="container">
+        <header class="section__head section__head--split">
+          <div>
+            <p class="eyebrow mono"><span class="section__num">04</span> <span data-i18n="reels.kicker">Divulgación visual</span></p>
+            <h2 class="section__title" id="reels-title" data-i18n="reels.title">Reels de la bitácora</h2>
+            <p class="section__lede" data-i18n="reels.lede">Ciencia en 60 segundos. Cada pieza abre directamente en Instagram.</p>
+          </div>
+          <a class="btn btn--ghost" id="reels-profile" href="#" target="_blank" rel="noopener noreferrer">
+            <svg aria-hidden="true"><use href="#i-instagram"/></svg><span data-i18n="reels.follow">Seguir en Instagram</span> ↗
+          </a>
+        </header>
+        <div class="reels-track" id="reels-track"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ ACERCA ═══════════════ -->
+    <section class="section" id="acerca" aria-labelledby="about-title">
+      <div class="container about">
+        <div class="about__card">
+          <img class="about__logo" src="assets/logo-bitacora.png" alt="Logo oficial de Bitácora de Jairo" width="120" height="120" onerror="BJ.logoFail(this)">
+          <p class="about__name">Bitácora <em>de Jairo</em></p>
+          <p class="mono about__meta">Jairo Castillo · Ecuador · <span id="coords">0°13′ S · 78°31′ O</span></p>
+          <div class="about__links" id="about-links"></div>
+        </div>
+        <div class="about__text">
+          <p class="eyebrow mono"><span class="section__num">05</span> <span data-i18n="about.kicker">Acerca del proyecto</span></p>
+          <h2 class="section__title" id="about-title" data-i18n="about.title">Una bitácora para mirar el cielo con método</h2>
+          <p data-i18n="about.p1">Bitácora de Jairo nace con una misión: acercar la astrofísica y el método científico a todo el que tenga curiosidad, combinando divulgación rigurosa —con ecuaciones reales y fuentes primarias— y herramientas interactivas de código abierto.</p>
+          <p data-i18n="about.p2">Cada artículo enlaza a sus referencias originales (NASA, ESA, arXiv, revistas con revisión por pares) para que puedas verificar, profundizar y formarte tu propio criterio. El laboratorio sigue el lema del MIT, «Mens et Manus»: entender con la mente y comprobar con las manos.</p>
+          <ul class="about__pillars">
+            <li><span class="mono">01</span><span data-i18n="about.pillar1">Rigor: fuentes primarias y ecuaciones verificables.</span></li>
+            <li><span class="mono">02</span><span data-i18n="about.pillar2">Claridad: ciencia de frontera explicada sin perder precisión.</span></li>
+            <li><span class="mono">03</span><span data-i18n="about.pillar3">Apertura: código abierto y contenido bilingüe ES · EN.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════════ PIE ═══════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img class="footer__logo" src="assets/logo-bitacora.png" alt="" width="44" height="44" onerror="BJ.logoFail(this)">
+        <div>
+          <p class="footer__name">Bitácora <em>de Jairo</em></p>
+          <p class="footer__tag" data-i18n="footer.tag">Astronomía, astrofísica y exploración espacial.</p>
+        </div>
+      </div>
+      <div class="footer__links" id="footer-links"></div>
+      <p class="footer__credits mono" data-i18n="footer.credits">Imágenes: NASA, ESA, CSA, STScI y colaboraciones científicas, según se indica en cada pieza. Noticias: Spaceflight News API.</p>
+      <p class="footer__copy mono">© <span id="year">2026</span> Jairo Castillo · <span data-i18n="footer.oss">Código abierto</span></p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ NAVEGACIÓN INFERIOR (móvil) ═══════════════ -->
+  <nav class="bottom-nav" aria-label="Navegación inferior">
+    <a href="#inicio" data-nav="inicio"><svg aria-hidden="true"><use href="#i-home"/></svg><span data-i18n="nav.home">Inicio</span></a>
+    <a href="#articulos" data-nav="articulos"><svg aria-hidden="true"><use href="#i-book"/></svg><span data-i18n="nav.articles">Artículos</span></a>
+    <a href="#radar" data-nav="radar"><svg aria-hidden="true"><use href="#i-radar"/></svg><span data-i18n="nav.radar">Radar</span></a>
+    <a href="#lab" data-nav="lab"><svg aria-hidden="true"><use href="#i-flask"/></svg><span data-i18n="nav.labShort">Lab</span></a>
+    <a href="#acerca" data-nav="acerca"><svg aria-hidden="true"><use href="#i-info"/></svg><span data-i18n="nav.about">Acerca</span></a>
+  </nav>
+
+  <!-- ═══════════════ LECTOR INTEGRADO ═══════════════ -->
+  <div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="reader-title" hidden>
+    <div class="reader__progress" aria-hidden="true"><span id="reader-progress"></span></div>
+    <header class="reader__bar">
+      <button class="reader__back" type="button" id="reader-close">
+        <svg aria-hidden="true"><use href="#i-back"/></svg><span data-i18n="reader.back">Volver</span>
+      </button>
+      <span class="reader__bar-title mono" id="reader-bar-title"></span>
+      <div class="reader__tools">
+        <button class="icon-btn icon-btn--text" type="button" id="font-dec" data-i18n-attr="aria-label:reader.fontDec" aria-label="Reducir tamaño de letra">A−</button>
+        <button class="icon-btn icon-btn--text" type="button" id="font-inc" data-i18n-attr="aria-label:reader.fontInc" aria-label="Aumentar tamaño de letra">A+</button>
+        <button class="icon-btn" type="button" id="copy-link" data-i18n-attr="aria-label:reader.copy" aria-label="Copiar enlace">
+          <svg aria-hidden="true"><use href="#i-link"/></svg>
+        </button>
+      </div>
+    </header>
+    <div class="reader__scroll" id="reader-scroll" tabindex="-1">
+      <article class="reader__article" id="reader-article"></article>
+    </div>
+    <button class="to-top" type="button" id="to-top" data-i18n-attr="aria-label:reader.top" aria-label="Volver arriba">
+      <svg aria-hidden="true"><use href="#i-up"/></svg>
+    </button>
+  </div>
+
+  <!-- ═══════════════ VISTA RÁPIDA DE NOTICIAS ═══════════════ -->
+  <dialog class="quickview" id="quickview" aria-labelledby="qv-title">
+    <div class="quickview__inner" id="quickview-inner"></div>
+  </dialog>
+
+  <!-- ═══════════════ BÚSQUEDA (móvil/tablet) ═══════════════ -->
+  <dialog class="search-sheet" id="search-sheet" aria-label="Buscar">
+    <div class="search-sheet__bar">
+      <svg aria-hidden="true"><use href="#i-search"/></svg>
+      <input id="sheet-search" type="search" autocomplete="off" data-i18n-attr="placeholder:search.placeholder;aria-label:search.label" placeholder="Buscar en la bitácora">
+      <button class="icon-btn" type="button" id="sheet-close" data-i18n-attr="aria-label:common.close" aria-label="Cerrar"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="search-sheet__results" id="sheet-results" role="listbox"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

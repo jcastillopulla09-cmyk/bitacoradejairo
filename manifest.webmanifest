@@ -1,0 +1,14 @@
+{
+  "name": "Bitácora de Jairo",
+  "short_name": "Bitácora",
+  "description": "Astronomía, astrofísica y exploración espacial: artículos rigurosos, radar espacial en vivo y laboratorio interactivo.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    { "src": "assets/logo-bitacora.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "updated": "2026-11-22",
+  "articles": [
+    {
+      "slug": "universo-26700-millones-ccc-tl-james-webb",
+      "category": "cosmology",
+      "date": "2026-11-08",
+      "featured": true,
+      "readingMinutes": 10,
+      "author": "Jairo Castillo",
+      "image": {
+        "src": "https://cdn.esawebb.org/archives/images/screen/weic2209a.jpg",
+        "credit": "NASA, ESA, CSA, STScI — Webb’s First Deep Field (SMACS 0723)",
+        "alt": {
+          "es": "Campo Profundo del telescopio James Webb: el cúmulo de galaxias SMACS 0723 y miles de galaxias lejanas amplificadas por lente gravitacional",
+          "en": "James Webb Space Telescope First Deep Field: galaxy cluster SMACS 0723 and thousands of distant, gravitationally lensed galaxies"
+        }
+      },
+      "primarySource": {
+        "label": "MNRAS · Gupta (2023) · arXiv:2309.13100",
+        "url": "https://arxiv.org/abs/2309.13100"
+      },
+      "es": {
+        "title": "¿Un universo de 26.700 millones de años? El debate del modelo CCC+TL y las galaxias tempranas del James Webb",
+        "dek": "Las galaxias sorprendentemente brillantes que el JWST detecta a corrimientos al rojo $z > 10$ reavivaron una propuesta heterodoxa que casi duplica la edad del cosmos. Qué afirma, cómo se pone a prueba y por qué el modelo estándar sigue en pie.",
+        "body": "\n<p>Desde sus primeras imágenes en julio de 2022, el telescopio espacial James Webb (JWST) ha empujado la frontera de lo observable hasta apenas unos cientos de millones de años después del Big Bang. Allí encontró algo que pocos esperaban: galaxias <em>demasiado</em> brillantes y aparentemente maduras para una época tan temprana. Algunos titulares hablaron de «galaxias que rompen el universo». Un artículo publicado en 2023 en <em>Monthly Notices of the Royal Astronomical Society</em> fue más lejos y propuso que el cosmos podría tener <strong>26.700 millones de años</strong>, casi el doble de los 13.800 millones aceptados.</p>\n\n<h2>Medir el tiempo con luz estirada</h2>\n<p>Para fechar una galaxia lejana no usamos relojes, sino espectros. La expansión del espacio estira la longitud de onda de la luz durante su viaje. Ese estiramiento es el <strong>corrimiento al rojo</strong> $z$:</p>\n$$1 + z = \\frac{\\lambda_{\\text{obs}}}{\\lambda_{\\text{emit}}} = \\frac{a(t_0)}{a(t_{\\text{emit}})} = \\frac{1}{a(t_{\\text{emit}})}$$\n<p>donde $a$ es el factor de escala del universo (hoy $a = 1$). La línea Lyman-α del hidrógeno, emitida a $121{,}6\\ \\text{nm}$ en el ultravioleta, llega desde la galaxia JADES-GS-z14-0 ($z = 14{,}32$) a $\\approx 1{,}86\\ \\mu\\text{m}$: en pleno infrarrojo. Por eso el JWST, optimizado entre $0{,}6$ y $28\\ \\mu\\text{m}$, es la herramienta natural para estudiar el amanecer cósmico.</p>\n\n<h2>La edad según el modelo estándar</h2>\n<p>En el modelo cosmológico estándar ΛCDM, plano y dominado hoy por energía oscura ($\\Lambda$) y materia ($\\Omega_m$), la edad del universo en el momento en que se emitió una luz con corrimiento $z$ tiene forma analítica (despreciando la radiación):</p>\n$$t(z) = \\frac{2}{3H_0\\sqrt{\\Omega_\\Lambda}}\\,\\operatorname{arcsinh}\\!\\left[\\sqrt{\\frac{\\Omega_\\Lambda}{\\Omega_m}}\\;(1+z)^{-3/2}\\right]$$\n<p>Con los parámetros del satélite Planck ($H_0 \\approx 67{,}7\\ \\text{km\\,s}^{-1}\\text{Mpc}^{-1}$, $\\Omega_m \\approx 0{,}31$) se obtiene $t_0 = 13{,}79 \\pm 0{,}02$ mil millones de años hoy, y apenas <strong>~290 millones de años</strong> para JADES-GS-z14-0. La pregunta es si un universo tan joven pudo ensamblar galaxias tan luminosas.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/jades6.jpg\" alt=\"Galaxia JADES-GS-z14-0 en el campo GOODS-S observado por el JWST\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>JADES-GS-z14-0, confirmada espectroscópicamente a $z = 14{,}32$. Crédito: NASA, ESA, CSA, J. Olmsted (STScI), S. Carniani (SNS), JADES Collaboration.</figcaption></figure>\n\n<h2>La propuesta CCC+TL</h2>\n<p>El físico Rajendra Gupta (Universidad de Ottawa) combinó dos ideas antiguas. La primera, las <strong>constantes de acoplamiento covariantes</strong> (CCC): la hipótesis, en la línea de Dirac, de que constantes como $c$, $G$ o $h$ podrían variar lentamente y de forma coordinada. La segunda, la <strong>luz cansada</strong> (TL, <em>tired light</em>), sugerida por Fritz Zwicky en 1929: los fotones perderían energía en su trayecto incluso sin expansión. En el modelo híbrido, el corrimiento observado se reparte entre ambos efectos:</p>\n$$1 + z = (1 + z_{\\text{exp}})\\,(1 + z_{\\text{TL}})$$\n<p>Como solo una parte del enrojecimiento se atribuye a la expansión, el universo resulta más antiguo: unos 26.700 millones de años, lo que daría a las primeras galaxias miles de millones de años para formarse. Gupta reportó que el modelo ajusta los datos de supernovas Ia y los tamaños angulares de galaxias del JWST.</p>\n\n<h2>Las pruebas que debe superar</h2>\n<p>Una hipótesis extraordinaria debe explicar todo lo que ΛCDM ya explica. Ahí aparecen problemas serios:</p>\n<ul>\n  <li><strong>Dilatación temporal de supernovas.</strong> En un universo en expansión, las curvas de luz de las supernovas lejanas se «estiran» exactamente un factor $(1+z)$. Las mediciones espectroscópicas (Blondin et al., 2008) y los grandes catálogos recientes confirman ese factor completo; la luz cansada pura no predice dilatación y la versión híbrida solo una parte.</li>\n  <li><strong>Prueba de Tolman.</strong> El brillo superficial de las galaxias cae como $(1+z)^{-4}$ si el espacio se expande, frente a $(1+z)^{-1}$ en un modelo estático con luz cansada. Las observaciones favorecen la expansión.</li>\n  <li><strong>El fondo cósmico de microondas (CMB).</strong> Su espectro es el cuerpo negro más perfecto medido en la naturaleza y su temperatura escala como $T(z) = T_0(1+z)$. Mecanismos de pérdida de energía fotón a fotón tienden a deformar o difuminar esa firma.</li>\n</ul>\n\n<h2>La tensión se ha suavizado</h2>\n<p>Además, el «problema» de las galaxias imposibles se ha reducido con datos espectroscópicos. Varios candidatos fotométricos resultaron estar a menor distancia; en otros, un núcleo activo (AGN) inflaba el brillo y, con él, la masa estimada. Procesos como la formación estelar en ráfagas o una función inicial de masas más pesada pueden explicar galaxias luminosas dentro de ΛCDM. JADES-GS-z14-0 es exigente para los modelos de formación, pero no los refuta.</p>\n\n<aside class=\"callout\"><strong>Método científico en acción.</strong> CCC+TL es valiosa precisamente porque es falsable: hace predicciones distintas para la dilatación temporal, el brillo superficial y el CMB. Hoy esas pruebas la desfavorecen. Pero ΛCDM tampoco está cerrado: la tensión de Hubble y los indicios de DESI sobre una energía oscura que evoluciona mantienen viva la cosmología.</aside>\n"
+      },
+      "en": {
+        "title": "A 26.7-billion-year-old Universe? The CCC+TL debate and James Webb’s early galaxies",
+        "dek": "The surprisingly bright galaxies JWST detects at redshifts $z > 10$ revived an unorthodox proposal that nearly doubles the age of the cosmos. What it claims, how it is tested, and why the standard model still stands.",
+        "body": "\n<p>Since its first images in July 2022, the James Webb Space Telescope (JWST) has pushed the observable frontier to just a few hundred million years after the Big Bang. There it found something few expected: galaxies that look <em>too</em> bright and apparently mature for such an early epoch. Some headlines spoke of “universe-breaking galaxies”. A 2023 paper in <em>Monthly Notices of the Royal Astronomical Society</em> went further, proposing that the cosmos might be <strong>26.7 billion years old</strong>, almost twice the accepted 13.8 billion.</p>\n\n<h2>Measuring time with stretched light</h2>\n<p>We do not date distant galaxies with clocks but with spectra. The expansion of space stretches the wavelength of light during its journey. That stretch is the <strong>redshift</strong> $z$:</p>\n$$1 + z = \\frac{\\lambda_{\\text{obs}}}{\\lambda_{\\text{emit}}} = \\frac{a(t_0)}{a(t_{\\text{emit}})} = \\frac{1}{a(t_{\\text{emit}})}$$\n<p>where $a$ is the cosmic scale factor (today $a = 1$). Hydrogen’s Lyman-α line, emitted at $121.6\\ \\text{nm}$ in the ultraviolet, arrives from galaxy JADES-GS-z14-0 ($z = 14.32$) at $\\approx 1.86\\ \\mu\\text{m}$: deep in the infrared. That is why JWST, optimised for $0.6$–$28\\ \\mu\\text{m}$, is the natural tool for studying cosmic dawn.</p>\n\n<h2>The age in the standard model</h2>\n<p>In the standard ΛCDM model, spatially flat and dominated today by dark energy ($\\Lambda$) and matter ($\\Omega_m$), the age of the Universe when light of redshift $z$ was emitted has an analytic form (neglecting radiation):</p>\n$$t(z) = \\frac{2}{3H_0\\sqrt{\\Omega_\\Lambda}}\\,\\operatorname{arcsinh}\\!\\left[\\sqrt{\\frac{\\Omega_\\Lambda}{\\Omega_m}}\\;(1+z)^{-3/2}\\right]$$\n<p>With Planck parameters ($H_0 \\approx 67.7\\ \\text{km\\,s}^{-1}\\text{Mpc}^{-1}$, $\\Omega_m \\approx 0.31$) this gives $t_0 = 13.79 \\pm 0.02$ billion years today and only <strong>~290 million years</strong> for JADES-GS-z14-0. The question is whether such a young Universe could assemble such luminous galaxies.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/jades6.jpg\" alt=\"Galaxy JADES-GS-z14-0 in the GOODS-S field observed by JWST\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>JADES-GS-z14-0, spectroscopically confirmed at $z = 14.32$. Credit: NASA, ESA, CSA, J. Olmsted (STScI), S. Carniani (SNS), JADES Collaboration.</figcaption></figure>\n\n<h2>The CCC+TL proposal</h2>\n<p>Physicist Rajendra Gupta (University of Ottawa) combined two old ideas. The first is <strong>covarying coupling constants</strong> (CCC): the Dirac-inspired hypothesis that constants such as $c$, $G$ or $h$ might vary slowly and in a coordinated way. The second is <strong>tired light</strong> (TL), suggested by Fritz Zwicky in 1929: photons would lose energy along their path even without expansion. In the hybrid model the observed redshift is split between both effects:</p>\n$$1 + z = (1 + z_{\\text{exp}})\\,(1 + z_{\\text{TL}})$$\n<p>Because only part of the reddening is attributed to expansion, the Universe comes out older—about 26.7 billion years—giving the first galaxies billions of years to form. Gupta reported that the model fits type Ia supernova data and the angular sizes of JWST galaxies.</p>\n\n<h2>The tests it must pass</h2>\n<p>An extraordinary hypothesis must explain everything ΛCDM already explains. That is where serious problems appear:</p>\n<ul>\n  <li><strong>Supernova time dilation.</strong> In an expanding Universe, distant supernova light curves are stretched by exactly a factor $(1+z)$. Spectroscopic measurements (Blondin et al., 2008) and large recent samples confirm the full factor; pure tired light predicts no dilation and the hybrid version only part of it.</li>\n  <li><strong>The Tolman test.</strong> Galaxy surface brightness falls as $(1+z)^{-4}$ if space expands, versus $(1+z)^{-1}$ in a static tired-light model. Observations favour expansion.</li>\n  <li><strong>The cosmic microwave background (CMB).</strong> Its spectrum is the most perfect blackbody measured in nature, and its temperature scales as $T(z) = T_0(1+z)$. Photon-by-photon energy-loss mechanisms tend to distort or blur that signature.</li>\n</ul>\n\n<h2>The tension has eased</h2>\n<p>Moreover, the “impossible galaxies” problem has shrunk with spectroscopic data. Several photometric candidates turned out to be closer; in others, an active galactic nucleus (AGN) inflated the brightness and therefore the inferred mass. Bursty star formation or a top-heavy initial mass function can explain luminous galaxies within ΛCDM. JADES-GS-z14-0 is demanding for galaxy-formation models, but it does not refute them.</p>\n\n<aside class=\"callout\"><strong>The scientific method at work.</strong> CCC+TL is valuable precisely because it is falsifiable: it makes different predictions for time dilation, surface brightness and the CMB. Today those tests disfavour it. Yet ΛCDM is not closed either: the Hubble tension and DESI’s hints of evolving dark energy keep cosmology very much alive.</aside>\n"
+      },
+      "references": [
+        {
+          "source": "arXiv · MNRAS",
+          "label": "Gupta, R. P. (2023). JWST early Universe observations and ΛCDM cosmology. MNRAS 524, 3385.",
+          "url": "https://arxiv.org/abs/2309.13100"
+        },
+        {
+          "source": "arXiv · Nature",
+          "label": "Carniani, S. et al. (2024). Spectroscopic confirmation of two luminous galaxies at a redshift of 14. Nature 633, 318.",
+          "url": "https://arxiv.org/abs/2405.18485"
+        },
+        {
+          "source": "arXiv · Nature",
+          "label": "Labbé, I. et al. (2023). A population of red candidate massive galaxies ~600 Myr after the Big Bang. Nature 616, 266.",
+          "url": "https://arxiv.org/abs/2207.12446"
+        },
+        {
+          "source": "arXiv · A&A",
+          "label": "Planck Collaboration (2020). Planck 2018 results. VI. Cosmological parameters. A&A 641, A6.",
+          "url": "https://arxiv.org/abs/1807.06209"
+        },
+        {
+          "source": "arXiv · ApJ",
+          "label": "Blondin, S. et al. (2008). Time dilation in type Ia supernova spectra at high redshift. ApJ 682, 724.",
+          "url": "https://arxiv.org/abs/0804.3595"
+        },
+        {
+          "source": "ESA/Webb",
+          "label": "Webb finds most distant known galaxy (JADES-GS-z14-0).",
+          "url": "https://esawebb.org/images/jades6/"
+        },
+        {
+          "source": "ESA/Webb",
+          "label": "Webb’s First Deep Field (NIRCam image), SMACS 0723.",
+          "url": "https://esawebb.org/images/weic2209a/"
+        }
+      ]
+    },
+    {
+      "slug": "cazando-exoplanetas-fotometria-transitos-curvas-de-luz",
+      "category": "exoplanets",
+      "date": "2026-10-21",
+      "featured": false,
+      "readingMinutes": 9,
+      "author": "Jairo Castillo",
+      "image": {
+        "src": "https://cdn.esawebb.org/archives/images/screen/weic2213a.jpg",
+        "credit": "NASA, ESA, CSA, J. Olmsted (STScI) — Ilustración de WASP-39 b",
+        "alt": {
+          "es": "Ilustración del exoplaneta gigante gaseoso WASP-39 b frente a su estrella",
+          "en": "Illustration of the gas-giant exoplanet WASP-39 b in front of its star"
+        }
+      },
+      "primarySource": {
+        "label": "NASA Exoplanet Archive (Caltech/IPAC)",
+        "url": "https://exoplanetarchive.ipac.caltech.edu/"
+      },
+      "es": {
+        "title": "Cazando exoplanetas: fotometría de tránsitos y curvas de luz",
+        "dek": "La mayoría de los más de 6.000 mundos confirmados fuera del Sistema Solar se descubrió midiendo diminutas caídas de brillo estelar. La geometría detrás de la profundidad $Delta F approx (R_p/R_*)^2$ y lo que una curva de luz revela.",
+        "body": "\n<p>Cuando un planeta pasa por delante de su estrella, vista desde la Tierra, bloquea una pequeña fracción de su luz. Ese eclipse parcial, llamado <strong>tránsito</strong>, es la técnica que más exoplanetas ha descubierto: primero con la misión Kepler de la NASA (2009–2018) y hoy con TESS, el satélite cazador de planetas liderado por el MIT. El archivo de exoplanetas de la NASA superó en 2025 la cifra de 6.000 planetas confirmados.</p>\n\n<h2>La profundidad del tránsito</h2>\n<p>Si la estrella fuera un disco de brillo uniforme, la fracción de flujo bloqueada sería simplemente la razón entre el área del disco planetario y el área del disco estelar:</p>\n$$\\frac{\\Delta F}{F} \\approx \\left(\\frac{R_p}{R_*}\\right)^2 \\equiv k^2$$\n<p>Los números son elocuentes. Júpiter frente al Sol produce una caída de ~1 % ($\\approx 10\\,100$ ppm, partes por millón). La Tierra, apenas $84$ ppm. En cambio, TRAPPIST-1e, un planeta rocoso de $0{,}92\\,R_\\oplus$ que orbita una enana roja de solo $0{,}12\\,R_\\odot$, bloquea $\\approx 5\\,000$ ppm: las estrellas pequeñas son aliadas en la búsqueda de mundos pequeños.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/weic2213c.jpg\" alt=\"Curvas de luz del tránsito de WASP-39 b medidas por NIRSpec del JWST\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>Curvas de luz de WASP-39 b obtenidas con NIRSpec (JWST). Crédito: NASA, ESA, CSA, L. Hustak (STScI); JWST Transiting Exoplanet Community ERS Team.</figcaption></figure>\n\n<h2>¿Cuánto dura y qué tan probable es?</h2>\n<p>Solo vemos tránsitos si la órbita está casi de canto. Para una órbita circular de radio $a$, la probabilidad geométrica es</p>\n$$P_{\\text{tr}} \\approx \\frac{R_*}{a}$$\n<p>Para un observador extraterrestre que mirara al Sol, la Tierra transitaría con probabilidad de apenas $0{,}47\\,\\%$. Por eso las misiones vigilan cientos de miles de estrellas a la vez. La duración del tránsito depende del período $P$ y del <strong>parámetro de impacto</strong> $b$, la distancia proyectada entre la trayectoria del planeta y el centro de la estrella en unidades de $R_*$:</p>\n$$T_{\\text{dur}} \\approx \\frac{P}{\\pi}\\,\\frac{R_*}{a}\\,\\sqrt{(1+k)^2 - b^2}, \\qquad b = \\frac{a\\cos i}{R_*}$$\n<p>Un tránsito terrestre central ($b = 0$) duraría unas 13 horas. El radio orbital se obtiene de la tercera ley de Kepler, $a^3 = G M_* P^2 / 4\\pi^2$, de modo que una sola curva de luz bien medida aporta tamaño, órbita e inclinación.</p>\n\n<h2>Leer una curva de luz</h2>\n<ul>\n  <li><strong>Ingreso y egreso:</strong> las rampas en las que el disco planetario entra y sale del estelar. Su duración relativa codifica $k$ y $b$.</li>\n  <li><strong>Fondo curvado:</strong> el oscurecimiento al limbo hace que el centro de la estrella sea más brillante que sus bordes, por lo que el fondo del tránsito no es plano.</li>\n  <li><strong>Forma en «V»:</strong> típica de tránsitos rasantes ($b > 1 - k$) o de binarias eclipsantes, el principal falso positivo.</li>\n</ul>\n<p>Para confirmar que se trata de un planeta se combina el tránsito con la técnica de velocidad radial, que aporta la masa. Radio y masa juntos dan la densidad media: la primera pista de si un mundo es rocoso, oceánico o gaseoso.</p>\n\n<h2>Del tránsito a la atmósfera</h2>\n<p>Si el planeta tiene atmósfera, su radio efectivo cambia con la longitud de onda: los gases absorben en bandas específicas. Medir $\\Delta F(\\lambda)$ produce un <strong>espectro de transmisión</strong>. Así, en 2022, el JWST identificó por primera vez de forma inequívoca dióxido de carbono en la atmósfera de un exoplaneta, el Saturno caliente WASP-39 b.</p>\n\n<aside class=\"callout\"><strong>Pruébalo tú mismo.</strong> En el Laboratorio de esta bitácora puedes mover $R_p$, $R_*$ y el parámetro de impacto, y ver en tiempo real cómo cambia la curva de luz y su profundidad en ppm.</aside>\n"
+      },
+      "en": {
+        "title": "Hunting exoplanets: transit photometry and light curves",
+        "dek": "Most of the more than 6,000 confirmed worlds beyond the Solar System were found by measuring tiny dips in starlight. The geometry behind the depth $Delta F approx (R_p/R_*)^2$ and what a light curve reveals.",
+        "body": "\n<p>When a planet passes in front of its star as seen from Earth, it blocks a small fraction of the light. That partial eclipse, a <strong>transit</strong>, is the technique that has discovered the most exoplanets: first with NASA’s Kepler mission (2009–2018) and today with TESS, the MIT-led planet-hunting satellite. NASA’s Exoplanet Archive passed 6,000 confirmed planets in 2025.</p>\n\n<h2>Transit depth</h2>\n<p>If the star were a uniformly bright disc, the fraction of flux blocked would simply be the ratio of the planet’s disc area to the stellar disc area:</p>\n$$\\frac{\\Delta F}{F} \\approx \\left(\\frac{R_p}{R_*}\\right)^2 \\equiv k^2$$\n<p>The numbers speak for themselves. Jupiter in front of the Sun causes a ~1% dip ($\\approx 10{,}100$ ppm, parts per million). Earth, a mere $84$ ppm. By contrast, TRAPPIST-1e, a $0.92\\,R_\\oplus$ rocky planet orbiting a red dwarf of only $0.12\\,R_\\odot$, blocks $\\approx 5{,}000$ ppm: small stars are allies in the search for small worlds.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/weic2213c.jpg\" alt=\"Transit light curves of WASP-39 b measured by JWST NIRSpec\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>WASP-39 b light curves from JWST NIRSpec. Credit: NASA, ESA, CSA, L. Hustak (STScI); JWST Transiting Exoplanet Community ERS Team.</figcaption></figure>\n\n<h2>How long, and how likely?</h2>\n<p>We only see transits when the orbit is nearly edge-on. For a circular orbit of radius $a$ the geometric probability is</p>\n$$P_{\\text{tr}} \\approx \\frac{R_*}{a}$$\n<p>For an alien observer looking at the Sun, Earth would transit with a probability of just $0.47\\%$. That is why missions monitor hundreds of thousands of stars at once. Transit duration depends on the period $P$ and the <strong>impact parameter</strong> $b$, the projected distance between the planet’s path and the stellar centre in units of $R_*$:</p>\n$$T_{\\text{dur}} \\approx \\frac{P}{\\pi}\\,\\frac{R_*}{a}\\,\\sqrt{(1+k)^2 - b^2}, \\qquad b = \\frac{a\\cos i}{R_*}$$\n<p>A central ($b = 0$) Earth transit would last about 13 hours. The orbital radius follows from Kepler’s third law, $a^3 = G M_* P^2 / 4\\pi^2$, so a single well-measured light curve yields size, orbit and inclination.</p>\n\n<h2>Reading a light curve</h2>\n<ul>\n  <li><strong>Ingress and egress:</strong> the ramps where the planetary disc enters and leaves the stellar disc. Their relative duration encodes $k$ and $b$.</li>\n  <li><strong>Curved bottom:</strong> limb darkening makes the stellar centre brighter than its edges, so the transit floor is not flat.</li>\n  <li><strong>“V” shape:</strong> typical of grazing transits ($b > 1 - k$) or eclipsing binaries, the main false positive.</li>\n</ul>\n<p>To confirm a planet, the transit is combined with the radial-velocity technique, which provides the mass. Radius and mass together give the mean density: the first clue to whether a world is rocky, oceanic or gaseous.</p>\n\n<h2>From transit to atmosphere</h2>\n<p>If the planet has an atmosphere, its effective radius changes with wavelength because gases absorb in specific bands. Measuring $\\Delta F(\\lambda)$ yields a <strong>transmission spectrum</strong>. That is how, in 2022, JWST made the first unambiguous identification of carbon dioxide in an exoplanet atmosphere, on the hot Saturn WASP-39 b.</p>\n\n<aside class=\"callout\"><strong>Try it yourself.</strong> In this logbook’s Lab you can move $R_p$, $R_*$ and the impact parameter and watch the light curve and its depth in ppm change in real time.</aside>\n"
+      },
+      "references": [
+        {
+          "source": "NASA · Caltech/IPAC",
+          "label": "NASA Exoplanet Archive.",
+          "url": "https://exoplanetarchive.ipac.caltech.edu/"
+        },
+        {
+          "source": "arXiv · ApJ",
+          "label": "Seager, S. & Mallén-Ornelas, G. (2003). A unique solution of planet and star parameters from an extrasolar planet transit light curve. ApJ 585, 1038.",
+          "url": "https://arxiv.org/abs/astro-ph/0206228"
+        },
+        {
+          "source": "Science",
+          "label": "Borucki, W. J. et al. (2010). Kepler planet-detection mission: introduction and first results. Science 327, 977.",
+          "url": "https://doi.org/10.1126/science.1185402"
+        },
+        {
+          "source": "arXiv · Nature",
+          "label": "Gillon, M. et al. (2017). Seven temperate terrestrial planets around the nearby ultracool dwarf star TRAPPIST-1. Nature 542, 456.",
+          "url": "https://arxiv.org/abs/1703.01424"
+        },
+        {
+          "source": "arXiv · Nature",
+          "label": "JWST Transiting Exoplanet Community ERS Team (2023). Identification of carbon dioxide in an exoplanet atmosphere. Nature 614, 649.",
+          "url": "https://arxiv.org/abs/2208.11692"
+        },
+        {
+          "source": "MIT",
+          "label": "TESS — Transiting Exoplanet Survey Satellite (MIT).",
+          "url": "https://tess.mit.edu/"
+        },
+        {
+          "source": "ESA/Webb",
+          "label": "Hot Gas Giant Exoplanet WASP-39 b (NIRSpec transit light curves).",
+          "url": "https://esawebb.org/images/weic2213c/"
+        }
+      ]
+    },
+    {
+      "slug": "telescopio-euclid-mapa-universo-oscuro",
+      "category": "telescopes",
+      "date": "2026-09-30",
+      "featured": false,
+      "readingMinutes": 8,
+      "author": "Jairo Castillo",
+      "image": {
+        "src": "https://media.esa.int/legacy/web/images/esa_multimedia/images/2023/11/euclid_s_view_of_the_perseus_cluster_of_galaxies/25170524-1-eng-GB/401261/image-thumb__401261__social_share/Euclid_s_view_of_the_Perseus_cluster_of_galaxies.858507b5.jpg",
+        "credit": "ESA/Euclid/Euclid Consortium/NASA, J.-C. Cuillandre (CEA Paris-Saclay), G. Anselmi — Cúmulo de Perseo",
+        "alt": {
+          "es": "Imagen del telescopio Euclid del cúmulo de galaxias de Perseo con miles de galaxias de fondo",
+          "en": "Euclid telescope image of the Perseus galaxy cluster with thousands of background galaxies"
+        }
+      },
+      "primarySource": {
+        "label": "ESA · Misión Euclid",
+        "url": "https://www.esa.int/missions/about-us/directorates/science/euclid"
+      },
+      "es": {
+        "title": "El telescopio Euclid y el primer gran mapa del Universo Oscuro",
+        "dek": "El 95 % del cosmos no emite luz. La misión Euclid de la ESA cartografía miles de millones de galaxias para medir cómo la materia oscura curva la luz y cómo la energía oscura acelera la expansión.",
+        "body": "\n<p>Según las mediciones del satélite Planck, la materia ordinaria —todo lo que forma estrellas, planetas y personas— es apenas un 5 % del contenido energético del universo. Alrededor de un 27 % es <strong>materia oscura</strong>, que no emite ni absorbe luz pero se delata por su gravedad, y cerca del 68 % es <strong>energía oscura</strong>, el misterioso componente que acelera la expansión cósmica. Euclid nació para estudiar ese «universo oscuro».</p>\n\n<h2>Una cámara de 600 megapíxeles en L2</h2>\n<p>Euclid despegó el 1 de julio de 2023 en un cohete Falcon 9 desde Cabo Cañaveral y opera en torno al punto de Lagrange L2 Sol-Tierra, a 1,5 millones de kilómetros. Su telescopio de 1,2 m alimenta dos instrumentos: <strong>VIS</strong>, una cámara visible de más de 600 megapíxeles que mide con gran precisión las formas de las galaxias, y <strong>NISP</strong>, un fotómetro y espectrómetro de infrarrojo cercano que determina sus corrimientos al rojo. Su sondeo amplio cubrirá unos 14.000 grados cuadrados, cerca de un tercio del cielo, y alcanzará galaxias cuya luz partió hace 10.000 millones de años.</p>\n\n<h2>Pesar lo invisible con lentes gravitacionales</h2>\n<p>La relatividad general predice que la masa curva la trayectoria de la luz. Una masa $M$ alineada con una fuente lejana produce un anillo de Einstein de radio angular</p>\n$$\\theta_E = \\sqrt{\\frac{4GM}{c^2}\\;\\frac{D_{ls}}{D_l\\,D_s}}$$\n<p>donde $D_l$, $D_s$ y $D_{ls}$ son las distancias angulares al lente, a la fuente y entre ambos. Pero Euclid explota sobre todo la <strong>lente débil</strong>: distorsiones de solo un ~1 % en las formas de las galaxias de fondo, imperceptibles una a una, que al promediarse sobre millones de objetos revelan la distribución de materia oscura a lo largo de la línea de visión.</p>\n\n<h2>Una regla cósmica y la ecuación de estado</h2>\n<p>El segundo método son las <strong>oscilaciones acústicas de bariones</strong> (BAO): ondas sonoras del plasma primordial que dejaron una separación preferida de ~150 megapársecs entre galaxias. Medir esa «regla estándar» a distintos corrimientos al rojo reconstruye la historia de la expansión. Ambas sondas convergen en la ecuación de estado de la energía oscura:</p>\n$$w = \\frac{p}{\\rho c^2}, \\qquad w(a) = w_0 + w_a\\,(1 - a)$$\n<p>Una constante cosmológica corresponde a $w_0 = -1$ y $w_a = 0$. Los resultados de DESI en 2024–2025 insinuaron desviaciones de ese valor; Euclid medirá estos parámetros con precisión de pocos por ciento y de forma independiente.</p>\n\n<h2>Hitos del mapa</h2>\n<ul>\n  <li><strong>Noviembre de 2023:</strong> primeras imágenes a color, incluido el cúmulo de Perseo con unas 1.000 galaxias miembro y más de 100.000 galaxias de fondo.</li>\n  <li><strong>Octubre de 2024:</strong> primera pieza del gran mapa, un mosaico de 208 gigapíxeles que cubre ~1 % del sondeo.</li>\n  <li><strong>Marzo de 2025:</strong> la publicación rápida Q1, con 63 grados cuadrados, unos 26 millones de galaxias y cientos de candidatas a lentes fuertes.</li>\n</ul>\n\n<aside class=\"callout\"><strong>Por qué importa.</strong> Si $w$ cambia con el tiempo, la energía oscura no sería la constante de Einstein sino un campo dinámico, y el destino final del universo tendría que reescribirse. Euclid es, en esencia, una máquina para decidir entre esas alternativas.</aside>\n"
+      },
+      "en": {
+        "title": "The Euclid telescope and the first great map of the Dark Universe",
+        "dek": "95% of the cosmos emits no light. ESA’s Euclid mission is charting billions of galaxies to measure how dark matter bends light and how dark energy accelerates the expansion.",
+        "body": "\n<p>According to the Planck satellite, ordinary matter—everything that makes stars, planets and people—is only about 5% of the Universe’s energy content. Around 27% is <strong>dark matter</strong>, which neither emits nor absorbs light but betrays itself through gravity, and roughly 68% is <strong>dark energy</strong>, the mysterious component accelerating cosmic expansion. Euclid was built to study this “dark Universe”.</p>\n\n<h2>A 600-megapixel camera at L2</h2>\n<p>Euclid launched on 1 July 2023 on a Falcon 9 rocket from Cape Canaveral and operates around the Sun–Earth Lagrange point L2, 1.5 million kilometres away. Its 1.2 m telescope feeds two instruments: <strong>VIS</strong>, a visible camera of more than 600 megapixels that measures galaxy shapes with exquisite precision, and <strong>NISP</strong>, a near-infrared photometer and spectrometer that determines their redshifts. Its wide survey will cover about 14,000 square degrees—roughly a third of the sky—reaching galaxies whose light left them 10 billion years ago.</p>\n\n<h2>Weighing the invisible with gravitational lensing</h2>\n<p>General relativity predicts that mass bends the path of light. A mass $M$ aligned with a distant source produces an Einstein ring of angular radius</p>\n$$\\theta_E = \\sqrt{\\frac{4GM}{c^2}\\;\\frac{D_{ls}}{D_l\\,D_s}}$$\n<p>where $D_l$, $D_s$ and $D_{ls}$ are the angular-diameter distances to the lens, to the source and between them. But Euclid mainly exploits <strong>weak lensing</strong>: distortions of only ~1% in the shapes of background galaxies, invisible one by one, which averaged over millions of objects reveal the distribution of dark matter along the line of sight.</p>\n\n<h2>A cosmic ruler and the equation of state</h2>\n<p>The second method is <strong>baryon acoustic oscillations</strong> (BAO): sound waves in the primordial plasma that imprinted a preferred separation of ~150 megaparsecs between galaxies. Measuring that “standard ruler” at different redshifts reconstructs the expansion history. Both probes converge on the dark-energy equation of state:</p>\n$$w = \\frac{p}{\\rho c^2}, \\qquad w(a) = w_0 + w_a\\,(1 - a)$$\n<p>A cosmological constant corresponds to $w_0 = -1$ and $w_a = 0$. DESI results in 2024–2025 hinted at departures from that value; Euclid will measure these parameters to a few per cent, independently.</p>\n\n<h2>Milestones of the map</h2>\n<ul>\n  <li><strong>November 2023:</strong> first colour images, including the Perseus cluster with about 1,000 member galaxies and more than 100,000 background galaxies.</li>\n  <li><strong>October 2024:</strong> the first piece of the great map, a 208-gigapixel mosaic covering ~1% of the survey.</li>\n  <li><strong>March 2025:</strong> the Q1 quick release, with 63 square degrees, some 26 million galaxies and hundreds of strong-lens candidates.</li>\n</ul>\n\n<aside class=\"callout\"><strong>Why it matters.</strong> If $w$ changes with time, dark energy would not be Einstein’s constant but a dynamical field, and the ultimate fate of the Universe would have to be rewritten. Euclid is, in essence, a machine for deciding between those alternatives.</aside>\n"
+      },
+      "references": [
+        {
+          "source": "ESA",
+          "label": "ESA — Euclid mission.",
+          "url": "https://www.esa.int/missions/about-us/directorates/science/euclid"
+        },
+        {
+          "source": "ESA",
+          "label": "Euclid’s first images: the dazzling edge of darkness (2023).",
+          "url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-s-first-images-the-dazzling-edge-of-darkness"
+        },
+        {
+          "source": "ESA",
+          "label": "Euclid’s view of the Perseus cluster of galaxies.",
+          "url": "https://www.esa.int/ESA_Multimedia/Images/2023/11/Euclid_s_view_of_the_Perseus_cluster_of_galaxies"
+        },
+        {
+          "source": "arXiv · A&A",
+          "label": "Euclid Collaboration: Mellier, Y. et al. (2025). Euclid. I. Overview of the Euclid mission. A&A 697, A1.",
+          "url": "https://arxiv.org/abs/2405.13491"
+        },
+        {
+          "source": "arXiv",
+          "label": "Laureijs, R. et al. (2011). Euclid Definition Study Report.",
+          "url": "https://arxiv.org/abs/1110.3193"
+        },
+        {
+          "source": "arXiv · JCAP",
+          "label": "DESI Collaboration (2025). DESI 2024 VI: Cosmological constraints from baryon acoustic oscillations.",
+          "url": "https://arxiv.org/abs/2404.03002"
+        }
+      ]
+    },
+    {
+      "slug": "voyager-1-un-dia-luz-comunicaciones-interestelares",
+      "category": "physics",
+      "date": "2026-11-16",
+      "featured": false,
+      "readingMinutes": 9,
+      "author": "Jairo Castillo",
+      "image": {
+        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Voyager_spacecraft.jpg?width=1280",
+        "credit": "NASA/JPL-Caltech — Concepto artístico de la sonda Voyager",
+        "alt": {
+          "es": "Concepto artístico de la sonda Voyager con su antena parabólica de alta ganancia",
+          "en": "Artist’s concept of the Voyager spacecraft with its high-gain dish antenna"
+        }
+      },
+      "primarySource": {
+        "label": "NASA · Voyager mission",
+        "url": "https://science.nasa.gov/mission/voyager/"
+      },
+      "es": {
+        "title": "Voyager 1 a un día luz de la Tierra: física de las comunicaciones interestelares",
+        "dek": "En noviembre de 2026 la sonda más lejana jamás construida alcanza una distancia que la luz tarda 24 horas en recorrer. Así se habla con una nave a $t = d/c$: potencias de attovatios, antenas de 70 metros y la teoría de Shannon.",
+        "body": "\n<p>Lanzada el 5 de septiembre de 1977, Voyager 1 visitó Júpiter y Saturno, cruzó la heliopausa —la frontera de la burbuja de viento solar— el 25 de agosto de 2012, a unas 121 unidades astronómicas (UA), y se convirtió en el primer objeto humano en el espacio interestelar. A mediados de noviembre de 2026 alcanza otro hito simbólico: <strong>un día luz</strong> de distancia de la Tierra.</p>\n\n<h2>¿Cuánto es un día luz?</h2>\n<p>Es la distancia que recorre la luz en el vacío durante $86\\,400$ segundos:</p>\n$$d = c\\,t = \\left(299\\,792{,}458\\ \\tfrac{\\text{km}}{\\text{s}}\\right)(86\\,400\\ \\text{s}) \\approx 2{,}59 \\times 10^{10}\\ \\text{km} \\approx 173\\ \\text{UA}$$\n<p>Invirtiendo la relación, el tiempo de viaje de una señal es $t = d/c$. Una orden enviada desde la Tierra tarda un día entero en llegar, y la confirmación otro día en volver: <strong>48 horas</strong> de ida y vuelta. Voyager 1 se aleja a unos 17 km/s, unas 3,6 UA por año, así que ese retraso crece alrededor de 30 minutos cada año.</p>\n\n<h2>Un susurro de $10^{-19}$ vatios</h2>\n<p>El transmisor de Voyager emite unos 23 W en banda X ($8{,}4\\ \\text{GHz}$, $\\lambda \\approx 3{,}6\\ \\text{cm}$) a través de una antena parabólica de 3,7 m. La potencia recibida sigue la ecuación de transmisión de Friis:</p>\n$$P_r = P_t\\,G_t\\,G_r\\left(\\frac{\\lambda}{4\\pi d}\\right)^2$$\n<p>A un día luz, la pérdida en el espacio libre supera los 319 dB. Incluso con la ganancia de la antena de la nave (~48 dBi) y de las antenas de 70 m de la Red de Espacio Profundo (DSN) de la NASA (~74 dBi), la potencia que llega es del orden de $4 \\times 10^{-19}\\ \\text{W}$. El factor $1/d^2$ es implacable: cada vez que la distancia se duplica, la señal se reduce a la cuarta parte.</p>\n\n<h2>Shannon y los 160 bits por segundo</h2>\n<p>¿Cuánta información cabe en una señal tan débil? La teoría de la información de Claude Shannon —nacida en los Laboratorios Bell y el MIT— fija el límite:</p>\n$$C = B\\,\\log_2\\!\\left(1 + \\frac{S}{N}\\right)$$\n<p>Con una relación señal-ruido minúscula, la capacidad $C$ es pequeña. Por eso Voyager 1 transmite datos científicos a solo <strong>160 bits por segundo</strong>, protegidos con códigos correctores de errores (convolucionales y Reed-Solomon) que permiten reconstruir los bits dañados por el ruido térmico de los receptores, enfriados criogénicamente.</p>\n\n<h2>Física del medio interestelar</h2>\n<p>Voyager no solo envía señales: mide el plasma que la rodea. Las oscilaciones del plasma se producen a la frecuencia</p>\n$$f_p \\approx 8{,}98\\ \\text{kHz}\\,\\sqrt{\\frac{n_e}{\\text{cm}^{-3}}}$$\n<p>En 2013, el instrumento de ondas de plasma registró oscilaciones de ~2,6 kHz, que implican una densidad electrónica $n_e \\approx 0{,}08\\ \\text{cm}^{-3}$, unas 40 veces mayor que la del viento solar exterior: la prueba de que Voyager 1 ya estaba en el medio interestelar.</p>\n\n<h2>Una carrera contra el plutonio</h2>\n<p>Sus generadores termoeléctricos de radioisótopos (RTG) se alimentan de plutonio-238, con una vida media de 87,7 años; la potencia disponible cae unos 4 W por año y los ingenieros han ido apagando instrumentos y calentadores. Entre noviembre de 2023 y abril de 2024, un chip de memoria dañado en el sistema de datos de vuelo dejó a Voyager 1 enviando datos ilegibles, hasta que el equipo del JPL reubicó el código a distancia, a más de 22 horas luz. Pocas veces la ingeniería ha sido tan elegante.</p>\n\n<aside class=\"callout\"><strong>En perspectiva.</strong> A la velocidad de Voyager 1, llegar a Próxima Centauri —4,24 años luz— tomaría unos 75.000 años. Un día luz es solo el primer paso de la humanidad fuera de casa.</aside>\n"
+      },
+      "en": {
+        "title": "Voyager 1, one light-day from Earth: the physics of interstellar communications",
+        "dek": "In November 2026 the most distant spacecraft ever built reaches a distance that light takes 24 hours to cross. This is how you talk to a probe at $t = d/c$: attowatt signals, 70-metre dishes and Shannon’s theory.",
+        "body": "\n<p>Launched on 5 September 1977, Voyager 1 visited Jupiter and Saturn, crossed the heliopause—the boundary of the solar-wind bubble—on 25 August 2012 at about 121 astronomical units (AU), and became the first human-made object in interstellar space. In mid-November 2026 it reaches another symbolic milestone: <strong>one light-day</strong> from Earth.</p>\n\n<h2>How far is a light-day?</h2>\n<p>It is the distance light travels in vacuum in $86{,}400$ seconds:</p>\n$$d = c\\,t = \\left(299{,}792.458\\ \\tfrac{\\text{km}}{\\text{s}}\\right)(86{,}400\\ \\text{s}) \\approx 2.59 \\times 10^{10}\\ \\text{km} \\approx 173\\ \\text{AU}$$\n<p>Inverting the relation, a signal’s travel time is $t = d/c$. A command sent from Earth takes a full day to arrive, and the acknowledgement another day to return: a <strong>48-hour</strong> round trip. Voyager 1 recedes at about 17 km/s, roughly 3.6 AU per year, so that delay grows by about 30 minutes every year.</p>\n\n<h2>A whisper of $10^{-19}$ watts</h2>\n<p>Voyager’s transmitter radiates about 23 W at X-band ($8.4\\ \\text{GHz}$, $\\lambda \\approx 3.6\\ \\text{cm}$) through a 3.7 m dish. The received power follows the Friis transmission equation:</p>\n$$P_r = P_t\\,G_t\\,G_r\\left(\\frac{\\lambda}{4\\pi d}\\right)^2$$\n<p>At one light-day the free-space loss exceeds 319 dB. Even with the gain of the spacecraft antenna (~48 dBi) and of NASA’s Deep Space Network (DSN) 70 m dishes (~74 dBi), the arriving power is of order $4 \\times 10^{-19}\\ \\text{W}$. The $1/d^2$ factor is relentless: every time the distance doubles, the signal drops to a quarter.</p>\n\n<h2>Shannon and 160 bits per second</h2>\n<p>How much information fits in such a faint signal? Claude Shannon’s information theory—born at Bell Labs and MIT—sets the limit:</p>\n$$C = B\\,\\log_2\\!\\left(1 + \\frac{S}{N}\\right)$$\n<p>With a tiny signal-to-noise ratio, the capacity $C$ is small. That is why Voyager 1 returns science data at only <strong>160 bits per second</strong>, protected by error-correcting codes (convolutional and Reed–Solomon) that rebuild bits corrupted by the thermal noise of cryogenically cooled receivers.</p>\n\n<h2>Physics of the interstellar medium</h2>\n<p>Voyager does not just send signals: it measures the plasma around it. Plasma oscillations occur at the frequency</p>\n$$f_p \\approx 8.98\\ \\text{kHz}\\,\\sqrt{\\frac{n_e}{\\text{cm}^{-3}}}$$\n<p>In 2013 the plasma-wave instrument recorded oscillations of ~2.6 kHz, implying an electron density $n_e \\approx 0.08\\ \\text{cm}^{-3}$—about 40 times that of the outer solar wind: proof that Voyager 1 was already in the interstellar medium.</p>\n\n<h2>A race against plutonium</h2>\n<p>Its radioisotope thermoelectric generators (RTGs) run on plutonium-238, with a half-life of 87.7 years; available power drops by about 4 W per year, and engineers have been switching off instruments and heaters. Between November 2023 and April 2024 a failed memory chip in the flight data system left Voyager 1 sending unreadable data, until the JPL team relocated the code remotely, more than 22 light-hours away. Engineering has rarely been this elegant.</p>\n\n<aside class=\"callout\"><strong>In perspective.</strong> At Voyager 1’s speed, reaching Proxima Centauri—4.24 light-years away—would take about 75,000 years. One light-day is just humanity’s first step away from home.</aside>\n"
+      },
+      "references": [
+        {
+          "source": "NASA",
+          "label": "NASA Science — Voyager mission.",
+          "url": "https://science.nasa.gov/mission/voyager/"
+        },
+        {
+          "source": "NASA · JPL",
+          "label": "Ludwig, R. & Taylor, J. (2002). Voyager Telecommunications. DESCANSO Design and Performance Summary Series.",
+          "url": "https://descanso.jpl.nasa.gov/DPSummary/Descanso4--Voyager_new.pdf"
+        },
+        {
+          "source": "Science",
+          "label": "Gurnett, D. A. et al. (2013). In situ observations of interstellar plasma with Voyager 1. Science 341, 1489.",
+          "url": "https://doi.org/10.1126/science.1241681"
+        },
+        {
+          "source": "Science",
+          "label": "Stone, E. C. et al. (2013). Voyager 1 observes low-energy galactic cosmic rays in a region depleted of heliospheric ions. Science 341, 150.",
+          "url": "https://doi.org/10.1126/science.1236408"
+        },
+        {
+          "source": "NASA",
+          "label": "NASA Eyes on the Solar System — Voyager 1 en tiempo real.",
+          "url": "https://eyes.nasa.gov/apps/solar-system/#/sc_voyager_1"
+        }
+      ]
+    }
+  ]
+}
