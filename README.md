@@ -12,6 +12,8 @@ Sitio estático (HTML + CSS + JavaScript ES modules, sin build) listo para **Git
   (`#articulo/slug`, barra de progreso, A− / A+, copiar enlace, ecuaciones KaTeX y referencias).
 - **Radar espacial**: Spaceflight News API v4 en vivo (vista rápida + enlace ↗ a la fuente) y la
   imagen astronómica del día de la NASA (APOD), con caché en `localStorage` y respaldo integrado.
+- **Lanzamientos en vivo**: próximos y recientes de todo el mundo (Launch Library 2 · The Space Devs), con
+  cuenta regresiva al segundo, hora local, plataforma, órbita, misión y enlaces a la transmisión.
 - **Laboratorio «Mens et Manus»**: simulador de tránsitos de exoplanetas y explorador de corrimiento al rojo (Canvas).
 - **Reels** (formato 9:16, enlazan a Instagram) y sección **Acerca**.
 - Bilingüe **ES | EN**, modo **claro / oscuro**, y dos experiencias nativas: escritorio (navbar superior,
@@ -27,6 +29,7 @@ js/i18n.js        textos ES/EN y formatos
 js/articles.js    portada, archivo, búsqueda, KaTeX
 js/reader.js      lector integrado
 js/live-feed.js   Spaceflight News + APOD
+js/launches.js    lanzamientos en vivo (Launch Library 2)
 js/simulator.js   laboratorio interactivo
 js/app.js         arranque y CONFIGURACIÓN (Instagram, GitHub, correo, Reels)
 data/articles.json

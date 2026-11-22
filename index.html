@@ -136,6 +136,7 @@
       <nav class="topnav" aria-label="Principal">
         <a href="#articulos" data-nav="articulos" data-i18n="nav.articles">Artículos</a>
         <a href="#radar" data-nav="radar" data-i18n="nav.radar">Radar</a>
+        <a href="#lanzamientos" data-nav="lanzamientos" data-i18n="nav.launches">Lanzamientos</a>
         <a href="#lab" data-nav="lab" data-i18n="nav.lab">Laboratorio</a>
         <a href="#reels" data-nav="reels" data-i18n="nav.reels">Reels</a>
         <a href="#acerca" data-nav="acerca" data-i18n="nav.about">Acerca</a>
@@ -252,11 +253,44 @@
       </div>
     </section>
 
+    <!-- ═══════════════ LANZAMIENTOS EN VIVO ═══════════════ -->
+    <section class="section section--launches" id="lanzamientos" aria-labelledby="launches-title">
+      <div class="container">
+        <header class="section__head section__head--split">
+          <div>
+            <p class="eyebrow mono"><span class="section__num">03</span> <span data-i18n="launch.kicker">Lanzamientos</span></p>
+            <h2 class="section__title" id="launches-title" data-i18n="launch.title">Cuenta regresiva al espacio</h2>
+            <p class="section__lede" data-i18n="launch.lede">Los próximos despegues y los más recientes de todo el mundo, con fecha, hora local y detalles de cada misión. Se actualiza solo.</p>
+          </div>
+          <div class="radar-status">
+            <span class="live-dot" id="launch-dot" aria-hidden="true"></span>
+            <span class="mono" id="launch-status" data-i18n="radar.loading">Conectando…</span>
+            <button class="icon-btn icon-btn--sm" type="button" id="launch-refresh" data-i18n-attr="aria-label:launch.refresh" aria-label="Actualizar lanzamientos">
+              <svg aria-hidden="true"><use href="#i-refresh"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <article class="lfeat" id="launch-featured" aria-live="polite">
+          <div class="lfeat__media skeleton"></div>
+        </article>
+
+        <div class="launch-bar">
+          <div class="tabs tabs--compact" role="tablist" aria-label="Lanzamientos">
+            <button class="tab" role="tab" type="button" data-launch-tab="upcoming" aria-selected="true" aria-controls="launch-list" data-i18n="launch.tab.upcoming">Próximos</button>
+            <button class="tab" role="tab" type="button" data-launch-tab="previous" aria-selected="false" aria-controls="launch-list" tabindex="-1" data-i18n="launch.tab.previous">Recientes</button>
+          </div>
+        </div>
+        <div class="launch-list" id="launch-list" role="tabpanel" aria-live="polite"></div>
+        <p class="credit-line mono"><span data-i18n="radar.credit">Datos:</span> <a href="https://thespacedevs.com/llapi" target="_blank" rel="noopener noreferrer">Launch Library 2 · The Space Devs</a></p>
+      </div>
+    </section>
+
     <!-- ═══════════════ LABORATORIO «MENS ET MANUS» ═══════════════ -->
-    <section class="section" id="lab" aria-labelledby="lab-title">
+    <section class="section section--surface" id="lab" aria-labelledby="lab-title">
       <div class="container">
         <header class="section__head">
-          <p class="eyebrow mono"><span class="section__num">03</span> <span data-i18n="lab.kicker">Laboratorio · Mens et Manus</span></p>
+          <p class="eyebrow mono"><span class="section__num">04</span> <span data-i18n="lab.kicker">Laboratorio · Mens et Manus</span></p>
           <h2 class="section__title" id="lab-title" data-i18n="lab.title">Mente y mano: física que se toca</h2>
           <p class="section__lede" data-i18n="lab.lede">Simuladores de código abierto en HTML5 Canvas. Mueve los parámetros y observa la física responder en tiempo real.</p>
         </header>
@@ -350,11 +384,11 @@
     </section>
 
     <!-- ═══════════════ REELS ═══════════════ -->
-    <section class="section section--surface" id="reels" aria-labelledby="reels-title">
+    <section class="section" id="reels" aria-labelledby="reels-title">
       <div class="container">
         <header class="section__head section__head--split">
           <div>
-            <p class="eyebrow mono"><span class="section__num">04</span> <span data-i18n="reels.kicker">Divulgación visual</span></p>
+            <p class="eyebrow mono"><span class="section__num">05</span> <span data-i18n="reels.kicker">Divulgación visual</span></p>
             <h2 class="section__title" id="reels-title" data-i18n="reels.title">Reels de la bitácora</h2>
             <p class="section__lede" data-i18n="reels.lede">Ciencia en 60 segundos. Cada pieza abre directamente en Instagram.</p>
           </div>
@@ -367,7 +401,7 @@
     </section>
 
     <!-- ═══════════════ ACERCA ═══════════════ -->
-    <section class="section" id="acerca" aria-labelledby="about-title">
+    <section class="section section--surface" id="acerca" aria-labelledby="about-title">
       <div class="container about">
         <div class="about__card">
           <img class="about__logo" src="assets/logo-bitacora.png" alt="Logo oficial de Bitácora de Jairo" width="120" height="120" onerror="BJ.logoFail(this)">
@@ -376,7 +410,7 @@
           <div class="about__links" id="about-links"></div>
         </div>
         <div class="about__text">
-          <p class="eyebrow mono"><span class="section__num">05</span> <span data-i18n="about.kicker">Acerca del proyecto</span></p>
+          <p class="eyebrow mono"><span class="section__num">06</span> <span data-i18n="about.kicker">Acerca del proyecto</span></p>
           <h2 class="section__title" id="about-title" data-i18n="about.title">Una bitácora para mirar el cielo con método</h2>
           <p data-i18n="about.p1">Bitácora de Jairo nace con una misión: acercar la astrofísica y el método científico a todo el que tenga curiosidad, combinando divulgación rigurosa —con ecuaciones reales y fuentes primarias— y herramientas interactivas de código abierto.</p>
           <p data-i18n="about.p2">Cada artículo enlaza a sus referencias originales (NASA, ESA, arXiv, revistas con revisión por pares) para que puedas verificar, profundizar y formarte tu propio criterio. El laboratorio sigue el lema del MIT, «Mens et Manus»: entender con la mente y comprobar con las manos.</p>

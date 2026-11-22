@@ -8,6 +8,7 @@ import { loadArticles, renderHero, renderGrid, renderError, setFilter, searchArt
 import { initReader, isReaderOpen, closeReader } from './reader.js';
 import { initLiveFeed, searchNews, openQuickView } from './live-feed.js';
 import { initSimulators } from './simulator.js';
+import { initLaunches, searchLaunches, openLaunch } from './launches.js';
 
 /* ═══════════════ CONFIGURACIÓN EDITABLE ═══════════════
  * Cambia aquí tus enlaces. Deja `email` vacío para ocultar el botón de correo.
@@ -114,20 +115,23 @@ function initArticles() {
 function resultsHTML(query) {
   const arts = searchArticles(query);
   const news = searchNews(query);
+  const launches = searchLaunches(query);
   if (!query.trim()) return `<p class="search-empty mono">${escapeHTML(t('search.hint'))}</p>`;
-  if (!arts.length && !news.length) return `<p class="search-empty">${escapeHTML(t('search.empty'))} «${escapeHTML(query)}»</p>`;
+  if (!arts.length && !news.length && !launches.length) return `<p class="search-empty">${escapeHTML(t('search.empty'))} «${escapeHTML(query)}»</p>`;
   const item = (r, i) => `
     <a class="search-item" role="option" id="sr-${r.type}-${i}" data-type="${r.type}" data-id="${escapeHTML(r.id)}" href="${escapeHTML(r.type === 'news' ? safeURL(r.href) : r.href)}"${r.type === 'news' ? ' target="_blank" rel="noopener noreferrer"' : ''}>
       <span class="search-item__title">${escapeHTML(r.title)}</span>
       <span class="search-item__meta mono">${escapeHTML(r.meta)}</span>
     </a>`;
   return (arts.length ? `<p class="search-group mono">${escapeHTML(t('search.articles'))}</p>${arts.map(item).join('')}` : '')
+       + (launches.length ? `<p class="search-group mono">${escapeHTML(t('search.launches'))}</p>${launches.map(item).join('')}` : '')
        + (news.length ? `<p class="search-group mono">${escapeHTML(t('search.news'))}</p>${news.map(item).join('')}` : '');
 }
 
 function activateResult(a, closeFn) {
   if (!a) return;
   if (a.dataset.type === 'news') { closeFn(); openQuickView(a.dataset.id); return; }
+  if (a.dataset.type === 'launch') { closeFn(); openLaunch(a.dataset.id); return; }
   closeFn();
   location.hash = a.getAttribute('href');
 }
@@ -217,13 +221,14 @@ function initSearch() {
 /* ═══════════════ Navegación activa (scroll-spy) ═══════════════ */
 function initNav() {
   const links = [...document.querySelectorAll('[data-nav]')];
-  const ids = ['inicio', 'articulos', 'radar', 'lab', 'reels', 'acerca'];
+  const ids = ['inicio', 'articulos', 'radar', 'lanzamientos', 'lab', 'reels', 'acerca'];
   const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
   const setActive = (id) => {
-    // En la barra inferior, «Reels» se agrupa con «Lab» al no tener pestaña propia.
+    // En la barra inferior, «Lanzamientos» se agrupa con «Radar» y «Reels» con «Lab».
+    const GROUP = { lanzamientos: 'radar', reels: 'lab' };
     links.forEach((a) => {
       const target = a.dataset.nav;
-      const on = target === id || (id === 'reels' && target === 'lab' && a.closest('.bottom-nav'));
+      const on = target === id || (GROUP[id] === target && a.closest('.bottom-nav'));
       if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
     });
   };
@@ -296,6 +301,7 @@ function boot() {
   renderReels();
   renderLinks();
   initLiveFeed();
+  initLaunches();
   initSimulators();
 
   window.addEventListener('langchange', () => { renderMasthead(); renderReels(); renderLinks(); });
