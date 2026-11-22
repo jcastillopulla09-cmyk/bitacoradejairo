@@ -1015,3 +1015,26 @@ html[data-device="mobile"] .lcard__media .img-fallback > span { display: none; }
 html[data-device="mobile"] .tabs--compact { width: 100%; display: flex; }
 html[data-device="mobile"] .tabs--compact .tab { flex: 1 0 auto; padding: 0 12px; font-size: 13px; }
 html[data-device="mobile"] .lcard__desc { -webkit-line-clamp: 2; font-size: 13px; }
+
+/* Cuenta regresiva viva: cada cifra que cambia «cae» suavemente */
+.countdown__num { display: inline-block; }
+.countdown__num.is-tick { animation: digit-drop 0.42s var(--ease); }
+@keyframes digit-drop {
+  0% { transform: translateY(-38%); opacity: 0; filter: blur(2px); }
+  60% { opacity: 1; filter: none; }
+  100% { transform: none; opacity: 1; }
+}
+.countdown__cell:last-child .countdown__num { color: #FFFFFF; }
+.countdown__cell:last-child::after {
+  content: ""; display: block; height: 2px; width: 100%; margin-top: 2px; background: rgba(255, 255, 255, 0.85);
+  transform-origin: left center; transform: scaleX(0);
+}
+.countdown__cell.is-sec::after { animation: second-bar 1s linear forwards; }
+@keyframes second-bar { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+.countdown.is-past .countdown__cell.is-sec::after { animation-direction: reverse; }
+[data-countdown-short], [data-qv-countdown] { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  .countdown__cell:last-child::after { animation: none; }
+}
+.lfeat__media .img-fallback { background: radial-gradient(ellipse at 70% 30%, #1d1d1d, #0A0A0A 70%); }
+.lfeat__media .img-fallback > span { display: none; }

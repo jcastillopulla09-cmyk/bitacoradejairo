@@ -162,7 +162,7 @@ function shortCountdown(iso) {
   const diff = new Date(iso).getTime() - Date.now();
   const c = splitCountdown(diff);
   const sign = diff >= 0 ? 'T−' : 'T+';
-  return c.d > 0 ? `${sign} ${c.d}d ${pad2(c.h)}h ${pad2(c.m)}m` : `${sign} ${pad2(c.h)}:${pad2(c.m)}:${pad2(c.s)}`;
+  return c.d > 0 ? `${sign} ${c.d}d ${pad2(c.h)}h ${pad2(c.m)}m ${pad2(c.s)}s` : `${sign} ${pad2(c.h)}:${pad2(c.m)}:${pad2(c.s)}`;
 }
 
 const STATUS_KIND = { 1: 'go', 2: 'tbd', 3: 'success', 4: 'failure', 5: 'hold', 6: 'flight', 7: 'partial', 8: 'tbc' };
@@ -308,7 +308,14 @@ function tick() {
   document.querySelectorAll('#lanzamientos [data-countdown]').forEach((el) => {
     const diff = new Date(el.dataset.countdown).getTime() - now;
     const c = splitCountdown(diff);
-    const set = (u, v) => { const n = el.querySelector(`[data-unit="${u}"]`); if (n && n.textContent !== v) n.textContent = v; };
+    const set = (u, v) => {
+      const n = el.querySelector(`[data-unit="${u}"]`);
+      if (!n || n.textContent === v) return;
+      n.textContent = v;
+      // Pequeña animación de «caída» en cada cifra que cambia.
+      n.classList.remove('is-tick'); void n.offsetWidth; n.classList.add('is-tick');
+      if (u === 's') { const cell = n.parentElement; cell.classList.remove('is-sec'); void cell.offsetWidth; cell.classList.add('is-sec'); }
+    };
     set('d', pad2(c.d)); set('h', pad2(c.h)); set('m', pad2(c.m)); set('s', pad2(c.s));
     el.classList.toggle('is-past', diff < 0);
   });
@@ -322,7 +329,7 @@ function tick() {
 }
 
 function startTicking() {
-  if (tickTimer || !visible || document.hidden) return;
+  if (tickTimer || document.hidden) return;
   tick();
   tickTimer = setInterval(tick, 1000);
 }
@@ -575,9 +582,13 @@ export function initLaunches() {
   const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
     visible = entries.some((en) => en.isIntersecting);
     if (visible && !started) { started = true; load(); refreshTimer = setInterval(() => { if (!document.hidden) { load(); if (tab === 'events') loadEvents(); } }, 60 * 1000 * 4); }
-    if (visible) startTicking(); else stopTicking();
+    if (visible) tick();
   }, { rootMargin: '400px 0px' }) : null;
-  if (io) io.observe(section); else { visible = true; started = true; load(); startTicking(); }
+  if (io) io.observe(section); else { visible = true; started = true; load(); }
+  // El reloj late cada segundo siempre que la pestaña esté visible (en móvil incluido).
+  startTicking();
+  window.addEventListener('pageshow', () => { stopTicking(); startTicking(); });
+  window.addEventListener('focus', () => { stopTicking(); startTicking(); });
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) stopTicking();
