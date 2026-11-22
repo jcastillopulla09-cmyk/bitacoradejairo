@@ -13,7 +13,8 @@ Sitio estático (HTML + CSS + JavaScript ES modules, sin build) listo para **Git
 - **Radar espacial**: Spaceflight News API v4 en vivo (vista rápida + enlace ↗ a la fuente) y la
   imagen astronómica del día de la NASA (APOD), con caché en `localStorage` y respaldo integrado.
 - **Lanzamientos en vivo**: próximos y recientes de todo el mundo (Launch Library 2 · The Space Devs), con
-  cuenta regresiva al segundo, hora local, plataforma, órbita, misión y enlaces a la transmisión.
+  cuenta regresiva al segundo, hora local, plataforma, órbita, misión, tripulación (misiones tripuladas),
+  enlaces a la transmisión y «Eventos de misión» (acoplamientos, caminatas espaciales, aterrizajes, pruebas).
 - **Laboratorio «Mens et Manus»**: simulador de tránsitos de exoplanetas y explorador de corrimiento al rojo (Canvas).
 - **Reels** (formato 9:16, enlazan a Instagram) y sección **Acerca**.
 - Bilingüe **ES | EN**, modo **claro / oscuro**, y dos experiencias nativas: escritorio (navbar superior,

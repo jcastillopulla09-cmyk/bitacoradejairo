@@ -19,13 +19,22 @@ const SOURCES = [
     previous: 'https://ll.thespacedevs.com/2.2.0/launch/previous/?limit=8&mode=detailed'
   }
 ];
-const CACHE_KEY = 'bj-launches-v1';
-const FRESH_MS = 10 * 60 * 1000;
+const EVENT_SOURCES = [
+  'https://ll.thespacedevs.com/2.3.0/events/upcoming/?limit=12',
+  'https://ll.thespacedevs.com/2.2.0/event/upcoming/?limit=12'
+];
+const CACHE_KEY = 'bj-launches-v2';
+const EVENTS_KEY = 'bj-events-v1';
+// Plan gratuito ≈ 15 peticiones/hora: 2 cada 12 min (lanzamientos) + 1 cada 20 min (eventos) = 13/h.
+const FRESH_MS = 12 * 60 * 1000;
+const EVENTS_FRESH_MS = 20 * 60 * 1000;
 const $ = (id) => document.getElementById(id);
 
 let data = { upcoming: [], previous: [], ts: null };
 let state = 'loading'; // loading | live | cached | offline
 let tab = 'upcoming';
+let events = { items: [], ts: null };
+let eventsState = 'idle'; // idle | loading | live | cached | offline
 let tickTimer = null;
 let refreshTimer = null;
 let visible = false;
@@ -54,6 +63,12 @@ function normalizeLaunch(l) {
   const cfg = l.rocket?.configuration || {};
   const prec = l.net_precision?.abbrev || l.net_precision?.name || '';
   const loc = l.pad?.location || {};
+  const stages = [].concat(l.rocket?.spacecraft_stage || []);
+  const crew = stages.flatMap((st) => st?.launch_crew || []).map((c) => ({
+    name: String(c.astronaut?.name || ''),
+    role: String(c.role?.role || (typeof c.role === 'string' ? c.role : '')),
+    agency: String(c.astronaut?.agency?.abbrev || c.astronaut?.agency?.name || '')
+  })).filter((c) => c.name);
   return {
     id: String(l.id),
     name: String(l.name || ''),
@@ -79,7 +94,9 @@ function normalizeLaunch(l) {
     webcastLive: !!l.webcast_live,
     image: { full: safeURL(img.full || ''), thumb: safeURL(img.thumb || '') },
     videos: vids,
-    infos
+    infos,
+    crew,
+    crewed: crew.length > 0 || /human|crew/i.test(String(l.mission?.type || ''))
   };
 }
 
@@ -165,6 +182,9 @@ const statusBadge = (l) => {
   const k = statusKind(l);
   return `<span class="lstatus lstatus--${k}"${l.status.description ? ` title="${escapeHTML(l.status.description)}"` : ''}>${escapeHTML(t('launch.status.' + k))}</span>`;
 };
+const crewBadge = (l) => (l.crewed
+  ? `<span class="lcrew"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>${escapeHTML(t('launch.crewed'))}${l.crew?.length ? ` · ${l.crew.length}` : ''}</span>`
+  : '');
 const A3 = { USA: 'US', CHN: 'CN', RUS: 'RU', KAZ: 'KZ', NZL: 'NZ', IND: 'IN', JPN: 'JP', FRA: 'FR', GUF: 'GF', KOR: 'KR', GBR: 'GB', IRN: 'IR', ISR: 'IL', AUS: 'AU', BRA: 'BR', PRK: 'KP', SWE: 'SE', NOR: 'NO', ESP: 'ES', ITA: 'IT', DEU: 'DE', CAN: 'CA', MHL: 'MH', KEN: 'KE', ECU: 'EC' };
 const flag = (code) => {
   const cc = String(code || '').toUpperCase();
@@ -199,7 +219,7 @@ function renderFeatured() {
     <div class="lfeat__body">
       <p class="lfeat__kicker mono">
         ${live ? `<span class="lfeat__live"><span class="live-dot" data-state="live"></span>${escapeHTML(t(k === 'flight' ? 'launch.inflight' : 'launch.liveNow'))}</span>` : escapeHTML(t('launch.next'))}
-        ${statusBadge(l)}
+        ${statusBadge(l)}${crewBadge(l)}
       </p>
       <h3 class="lfeat__title">${escapeHTML(l.mission)}</h3>
       <p class="lfeat__rocket mono">${escapeHTML(l.rocket)}${l.provider ? ` · ${escapeHTML(l.provider)}` : ''}</p>
@@ -229,6 +249,7 @@ function cardHTML(l, kind) {
     <div class="lcard__body">
       <p class="lcard__when mono"><time datetime="${escapeHTML(l.net)}">${escapeHTML(fmtWhen(l))}</time><span class="lcard__mstatus">${statusBadge(l)}</span></p>
       <h4 class="lcard__title">${escapeHTML(l.mission)}</h4>
+      ${l.crewed ? `<p class="lcard__crew">${crewBadge(l)}</p>` : ''}
       <p class="lcard__rocket">${escapeHTML(l.rocket)}${l.provider ? ` <span>· ${escapeHTML(l.provider)}</span>` : ''}</p>
       <p class="lcard__where mono">${flag(l.country)} ${escapeHTML(l.location || l.pad)}</p>
       <p class="lcard__foot mono">${kind === 'upcoming'
@@ -241,6 +262,7 @@ function cardHTML(l, kind) {
 function renderList() {
   const list = $('launch-list');
   if (!list) return;
+  if (tab === 'events') { renderEvents(list); return; }
   if (state === 'offline') {
     list.innerHTML = `
       <div class="radar-offline">
@@ -348,6 +370,7 @@ function openLaunch(id) {
         ${l.probability !== null ? `<div><dt class="mono">${escapeHTML(t('launch.weather'))}</dt><dd>${l.probability} %</dd></div>` : ''}
         <div><dt class="mono">${escapeHTML(t('launch.statusLabel'))}</dt><dd>${escapeHTML(t('launch.status.' + k))}${l.failReason ? `<br><span class="lqv__fail">${escapeHTML(l.failReason)}</span>` : ''}</dd></div>
       </dl>
+      ${l.crew?.length ? `<div class="lqv__desc"><p class="eyebrow mono">${escapeHTML(t('launch.crew'))}</p><ul class="lqv__crew">${l.crew.map((c) => `<li><span>${escapeHTML(c.name)}</span><span class="mono">${escapeHTML([c.role, c.agency].filter(Boolean).join(' · '))}</span></li>`).join('')}</ul></div>` : ''}
       ${l.description ? `<div class="lqv__desc"><p class="eyebrow mono">${escapeHTML(t('launch.mission'))}</p><p>${escapeHTML(l.description)}</p>${getLang() === 'es' ? `<p class="lqv__note mono">${escapeHTML(t('launch.descNote'))}</p>` : ''}</div>` : ''}
       ${links.length ? `<div class="lqv__links">${links.map((x) => `<a class="btn ${x.primary ? 'btn--primary' : 'btn--ghost'} btn--block" href="${escapeHTML(x.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(x.label)} ↗</a>`).join('')}</div>` : ''}
       <p class="credit mono">${escapeHTML(t('launch.credit'))}</p>
@@ -362,15 +385,159 @@ function openLaunch(id) {
 }
 
 /* ───────────── Búsqueda global ───────────── */
-export function searchLaunches(query, limit = 3) {
+export function searchLaunches(query, limit = 4) {
   const q = normalize(query).trim();
   if (!q) return [];
-  return [...data.upcoming, ...data.previous].filter((l) => {
-    const hay = normalize([l.name, l.mission, l.rocket, l.provider, l.location, l.pad].join(' '));
-    return q.split(/\s+/).every((term) => hay.includes(term));
-  }).slice(0, limit).map((l) => ({ type: 'launch', id: l.id, title: l.name, meta: fmtWhen(l), href: '#lanzamientos' }));
+  const match = (hay) => q.split(/\s+/).every((term) => normalize(hay).includes(term));
+  const launches = [...data.upcoming, ...data.previous]
+    .filter((l) => match([l.name, l.mission, l.rocket, l.provider, l.location, l.pad, ...(l.crew || []).map((c) => c.name)].join(' ')))
+    .map((l) => ({ type: 'launch', id: l.id, title: l.name, meta: fmtWhen(l), href: '#lanzamientos' }));
+  const evs = events.items
+    .filter((ev) => match([ev.name, ev.type, eventTypeLabel(ev.type), ev.location, ev.description].join(' ')))
+    .map((ev) => ({ type: 'event', id: ev.id, title: ev.name, meta: `${eventTypeLabel(ev.type)} · ${fmtWhen({ net: ev.date, precision: ev.precision })}`, href: '#lanzamientos' }));
+  return [...launches, ...evs].slice(0, limit);
 }
 export { openLaunch };
+
+/* ───────────── Eventos de misión: acoplamientos, caminatas, aterrizajes… ───────────── */
+const readEvCache = () => { try { return JSON.parse(localStorage.getItem(EVENTS_KEY) || 'null'); } catch (e) { return null; } };
+
+function normalizeEvent(e) {
+  const img = typeof e.feature_image === 'string' ? e.feature_image : (e.image?.image_url || e.image?.thumbnail_url || '');
+  const thumb = e.image?.thumbnail_url || img;
+  const vid = e.video_url || (e.vid_urls || e.vidURLs || [])[0]?.url || '';
+  return {
+    id: 'ev-' + String(e.id),
+    name: String(e.name || ''),
+    type: String(e.type?.name || ''),
+    description: String(e.description || ''),
+    location: String(e.location || ''),
+    date: e.date,
+    precision: String(e.date_precision?.abbrev || e.date_precision?.name || ''),
+    image: { full: safeURL(img), thumb: safeURL(thumb) },
+    video: safeURL(vid),
+    news: safeURL(e.news_url || ''),
+    webcastLive: !!e.webcast_live,
+    launches: (e.launches || []).map((x) => String(x.name || '')).filter(Boolean).slice(0, 3)
+  };
+}
+
+async function loadEvents(force = false) {
+  const cached = readEvCache();
+  if (!force && cached?.ts && Date.now() - cached.ts < EVENTS_FRESH_MS && cached.items?.length) {
+    events = cached; eventsState = 'live'; if (tab === 'events') renderList(); tick(); return;
+  }
+  if (!events.items.length) { eventsState = 'loading'; if (tab === 'events') renderList(); }
+  let ok = false;
+  for (const url of EVENT_SOURCES) {
+    try {
+      const res = await fetchJSON(url);
+      const items = (res.results || []).map(normalizeEvent).filter((x) => x.date && x.name);
+      if (!items.length) throw new Error('empty');
+      events = { items, ts: Date.now() };
+      writeEvCache(events);
+      eventsState = 'live'; ok = true; break;
+    } catch (err) { if (err.status === 429) break; }
+  }
+  if (!ok) {
+    if (cached?.items?.length) { events = cached; eventsState = 'cached'; }
+    else if (!events.items.length) eventsState = 'offline';
+    else eventsState = 'cached';
+  }
+  if (tab === 'events') { renderList(); tick(); }
+}
+const writeEvCache = (v) => { try { localStorage.setItem(EVENTS_KEY, JSON.stringify(v)); } catch (e) {} };
+
+const EVENT_TYPES = [
+  [/undock/i, 'undocking'], [/dock/i, 'docking'], [/unberth/i, 'unberthing'], [/berth/i, 'berthing'],
+  [/eva|spacewalk/i, 'eva'], [/splashdown/i, 'splashdown'], [/moon landing|lunar landing/i, 'moonlanding'],
+  [/landing/i, 'landing'], [/static fire/i, 'staticfire'], [/wet dress/i, 'wdr'], [/roll ?out/i, 'rollout'],
+  [/abort/i, 'abort'], [/press|conference|briefing/i, 'press'], [/celestial/i, 'celestial'],
+  [/flyby/i, 'flyby'], [/insertion|orbit/i, 'insertion'], [/test/i, 'test'], [/spacecraft/i, 'spacecraft']
+];
+function eventTypeKey(name) { const hit = EVENT_TYPES.find(([re]) => re.test(name)); return hit ? hit[1] : ''; }
+function eventTypeLabel(name) {
+  const k = eventTypeKey(name);
+  const label = k ? t('event.type.' + k) : '';
+  return label && label !== 'event.type.' + k ? label : (name || t('event.generic'));
+}
+
+function eventCardHTML(ev) {
+  const upcoming = new Date(ev.date).getTime() > Date.now();
+  const live = ev.webcastLive;
+  return `
+  <article class="lcard lcard--event" data-event="${escapeHTML(ev.id)}" tabindex="0" role="button" aria-haspopup="dialog" aria-label="${escapeHTML(ev.name)}">
+    <div class="lcard__media">${imgTag(ev.image.thumb || ev.image.full, ev.name)}<span class="lstatus lstatus--event">${escapeHTML(eventTypeLabel(ev.type))}</span></div>
+    <div class="lcard__body">
+      <p class="lcard__when mono"><time datetime="${escapeHTML(ev.date)}">${escapeHTML(fmtWhen({ net: ev.date, precision: ev.precision }))}</time><span class="lcard__mstatus"><span class="lstatus lstatus--event">${escapeHTML(eventTypeLabel(ev.type))}</span></span></p>
+      <h4 class="lcard__title">${escapeHTML(ev.name)}</h4>
+      ${ev.description ? `<p class="lcard__desc">${escapeHTML(ev.description)}</p>` : ''}
+      ${ev.location ? `<p class="lcard__where mono">${escapeHTML(ev.location)}</p>` : ''}
+      <p class="lcard__foot mono">${upcoming || live
+        ? `<span data-countdown-short="${escapeHTML(ev.date)}">${escapeHTML(shortCountdown(ev.date))}</span>${live ? `<span class="lcard__live">● ${escapeHTML(t('launch.liveNow'))}</span>` : ''}`
+        : `<span>${escapeHTML(formatRelative(ev.date))}</span>`}</p>
+    </div>
+  </article>`;
+}
+
+function renderEvents(list) {
+  if (!events.items.length && (eventsState === 'idle' || eventsState === 'loading')) {
+    list.innerHTML = Array.from({ length: 3 }, () => '<div class="lcard"><div class="lcard__media skeleton"></div><div class="lcard__body"><span class="skeleton-line">&nbsp;</span><span class="skeleton-line">&nbsp;</span></div></div>').join('');
+    return;
+  }
+  if (eventsState === 'offline' && !events.items.length) {
+    list.innerHTML = `
+      <div class="radar-offline">
+        <p class="eyebrow mono">Launch Library 2</p>
+        <p class="radar-offline__title">${escapeHTML(t('event.offline'))}</p>
+        <p>${escapeHTML(t('launch.offline.body'))}</p>
+        <button type="button" class="btn btn--ghost" data-action="retry-events">${escapeHTML(t('radar.retry'))}</button>
+      </div>`;
+    return;
+  }
+  const items = events.items.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+  list.innerHTML = items.map(eventCardHTML).join('');
+}
+
+function openEvent(id) {
+  const ev = events.items.find((x) => x.id === id);
+  const dlg = $('quickview');
+  if (!ev || !dlg) return;
+  const upcoming = new Date(ev.date).getTime() > Date.now();
+  $('quickview-inner').innerHTML = `
+    <button class="icon-btn quickview__close" type="button" data-action="close-qv" aria-label="${escapeHTML(t('common.close'))}"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+    <figure class="quickview__media">${imgTag(ev.image.full, ev.name)}</figure>
+    <div class="quickview__body">
+      <p class="eyebrow mono"><span class="lstatus lstatus--event">${escapeHTML(eventTypeLabel(ev.type))}</span></p>
+      <h2 class="quickview__title" id="qv-title">${escapeHTML(ev.name)}</h2>
+      ${upcoming ? `<p class="lqv__count mono"><span data-qv-countdown="${escapeHTML(ev.date)}">${escapeHTML(shortCountdown(ev.date))}</span></p>` : ''}
+      <dl class="lqv__facts">
+        <div><dt class="mono">${escapeHTML(t('launch.when'))}</dt><dd>${escapeHTML(fmtWhen({ net: ev.date, precision: ev.precision }, { long: true }))}<br><span class="mono">${escapeHTML(fmtUTC(ev.date))}</span></dd></div>
+        ${ev.location ? `<div><dt class="mono">${escapeHTML(t('event.location'))}</dt><dd>${escapeHTML(ev.location)}</dd></div>` : ''}
+        ${ev.launches.length ? `<div><dt class="mono">${escapeHTML(t('event.related'))}</dt><dd>${ev.launches.map(escapeHTML).join('<br>')}</dd></div>` : ''}
+      </dl>
+      ${ev.description ? `<div class="lqv__desc"><p class="eyebrow mono">${escapeHTML(t('event.about'))}</p><p>${escapeHTML(ev.description)}</p>${getLang() === 'es' ? `<p class="lqv__note mono">${escapeHTML(t('launch.descNote'))}</p>` : ''}</div>` : ''}
+      ${(ev.video || ev.news) ? `<div class="lqv__links">
+        ${ev.video ? `<a class="btn btn--primary btn--block" href="${escapeHTML(ev.video)}" target="_blank" rel="noopener noreferrer">${escapeHTML(t(ev.webcastLive ? 'launch.watchLive' : 'launch.watch'))} ↗</a>` : ''}
+        ${ev.news ? `<a class="btn btn--ghost btn--block" href="${escapeHTML(ev.news)}" target="_blank" rel="noopener noreferrer">${escapeHTML(t('event.news'))} ↗</a>` : ''}
+      </div>` : ''}
+      <p class="credit mono">${escapeHTML(t('launch.credit'))}</p>
+    </div>`;
+  if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+  document.documentElement.classList.add('modal-open');
+  const timer = setInterval(() => {
+    const el = dlg.querySelector('[data-qv-countdown]');
+    if (!dlg.open || !el) { clearInterval(timer); return; }
+    el.textContent = shortCountdown(el.dataset.qvCountdown);
+  }, 1000);
+}
+export { openEvent };
+
+function selectTab(name) {
+  tab = name;
+  render();
+  if (name === 'events') loadEvents();
+}
 
 /* ───────────── Inicialización ───────────── */
 export function initLaunches() {
@@ -384,22 +551,30 @@ export function initLaunches() {
     if (e.target.closest('a')) return;
     if (e.target.closest('[data-action="retry-launches"]')) { load(true); return; }
     const tabBtn = e.target.closest('[data-launch-tab]');
-    if (tabBtn) { tab = tabBtn.dataset.launchTab; render(); return; }
+    if (tabBtn) { selectTab(tabBtn.dataset.launchTab); return; }
+    if (e.target.closest('[data-action="retry-events"]')) { loadEvents(true); return; }
+    const ev = e.target.closest('[data-event]');
+    if (ev) { openEvent(ev.dataset.event); return; }
     const card = e.target.closest('[data-launch]');
     if (card) openLaunch(card.dataset.launch);
   });
   section.addEventListener('keydown', (e) => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.lcard[data-launch]')) { e.preventDefault(); openLaunch(e.target.dataset.launch); }
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.lcard[data-event]')) { e.preventDefault(); openEvent(e.target.dataset.event); }
     if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && e.target.matches('[data-launch-tab]')) {
-      tab = tab === 'upcoming' ? 'previous' : 'upcoming'; render();
+      const order = ['upcoming', 'previous', 'events'];
+      const next = order[(order.indexOf(tab) + (e.key === 'ArrowRight' ? 1 : order.length - 1)) % order.length];
+      selectTab(next);
       section.querySelector(`[data-launch-tab="${tab}"]`)?.focus();
     }
   });
-  $('launch-refresh')?.addEventListener('click', () => load(true));
+  $('launch-refresh')?.addEventListener('click', () => { load(true); if (tab === 'events') loadEvents(true); });
+  const evCached = readEvCache();
+  if (evCached?.items) events = evCached;
 
   const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
     visible = entries.some((en) => en.isIntersecting);
-    if (visible && !started) { started = true; load(); refreshTimer = setInterval(() => { if (!document.hidden) load(); }, FRESH_MS); }
+    if (visible && !started) { started = true; load(); refreshTimer = setInterval(() => { if (!document.hidden) { load(); if (tab === 'events') loadEvents(); } }, 60 * 1000 * 4); }
     if (visible) startTicking(); else stopTicking();
   }, { rootMargin: '400px 0px' }) : null;
   if (io) io.observe(section); else { visible = true; started = true; load(); startTicking(); }

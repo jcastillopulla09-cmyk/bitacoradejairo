@@ -8,7 +8,7 @@ import { loadArticles, renderHero, renderGrid, renderError, setFilter, searchArt
 import { initReader, isReaderOpen, closeReader } from './reader.js';
 import { initLiveFeed, searchNews, openQuickView } from './live-feed.js';
 import { initSimulators } from './simulator.js';
-import { initLaunches, searchLaunches, openLaunch } from './launches.js';
+import { initLaunches, searchLaunches, openLaunch, openEvent } from './launches.js';
 
 /* ═══════════════ CONFIGURACIÓN EDITABLE ═══════════════
  * Cambia aquí tus enlaces. Deja `email` vacío para ocultar el botón de correo.
@@ -132,6 +132,7 @@ function activateResult(a, closeFn) {
   if (!a) return;
   if (a.dataset.type === 'news') { closeFn(); openQuickView(a.dataset.id); return; }
   if (a.dataset.type === 'launch') { closeFn(); openLaunch(a.dataset.id); return; }
+  if (a.dataset.type === 'event') { closeFn(); openEvent(a.dataset.id); return; }
   closeFn();
   location.hash = a.getAttribute('href');
 }
