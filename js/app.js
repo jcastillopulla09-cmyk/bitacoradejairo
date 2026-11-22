@@ -14,7 +14,7 @@ import { initSimulators } from './simulator.js';
  * En `reels`, pon la URL exacta de cada Reel en `url` (si queda vacía, abre tu perfil).
  */
 const CONFIG = {
-  instagram: 'https://www.instagram.com/bitacoradejairo/',
+  instagram: 'https://www.instagram.com/bitacora_de_jairo/',
   github: 'https://github.com/jcastillopulla09-cmyk/bitacoradejairo',
   email: '', // p. ej. 'tucorreo@ejemplo.com'
   reels: [
