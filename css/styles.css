@@ -1038,3 +1038,4 @@ html[data-device="mobile"] .lcard__desc { -webkit-line-clamp: 2; font-size: 13px
 }
 .lfeat__media .img-fallback { background: radial-gradient(ellipse at 70% 30%, #1d1d1d, #0A0A0A 70%); }
 .lfeat__media .img-fallback > span { display: none; }
+html[data-device="mobile"] .prose .katex-display > .katex { font-size: 1em; }
