@@ -1142,3 +1142,10 @@ html[data-device="mobile"] .g3d-label { font-size: 10px; padding: 6px 10px; }
   html[data-device="desktop"] .brand__name { display: none; }
 }
 html[data-device="tablet"] .topnav a[data-nav="reels"] { display: none; }
+/* Altura explícita (no depende de aspect-ratio, que falla en Safari antiguos) */
+html[data-device="mobile"] .g3d__stage { aspect-ratio: auto; height: 112vw; max-height: 560px; min-height: 340px; }
+html[data-device="tablet"] .g3d__stage { aspect-ratio: auto; height: 68vw; max-height: 640px; }
+.g3d__status { flex-direction: column; gap: 12px; }
+.g3d__stage.is-fallback .g3d__status { display: flex; align-items: center; justify-content: center; }
+.g3d__err { font-size: 10.5px; color: rgba(255, 255, 255, 0.45); max-width: 34ch; }
+.g3d__status .btn { pointer-events: auto; }

@@ -218,15 +218,30 @@ export function selectObject(i, { fromScene = false } = {}) {
   if (scene && !fromScene) scene.focus(current);
 }
 
+function webglAvailable() {
+  try {
+    const c = document.createElement('canvas');
+    const gl = c.getContext('webgl2') || c.getContext('webgl') || c.getContext('experimental-webgl');
+    if (!gl) return false;
+    gl.getExtension('WEBGL_lose_context')?.loseContext(); // libera el contexto de prueba (iOS limita cuántos hay)
+    return true;
+  } catch (e) { return false; }
+}
+
 async function loadScene() {
   if (scene || loading) return;
   loading = true;
   const stage = $('g3d-stage');
   const status = $('g3d-status');
+  stage.classList.remove('is-fallback');
+  status.hidden = false;
+  status.textContent = t('g3d.loading');
   try {
-    const probe = document.createElement('canvas');
-    if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) throw new Error('no-webgl');
-    const mod = await import('./scene3d.js');
+    if (!webglAvailable()) throw new Error('WebGL no disponible');
+    const mod = await Promise.race([
+      import('./scene3d.js'),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('tiempo de carga agotado')), 25000))
+    ]);
     scene = await mod.createScene({
       container: $('g3d-canvas-wrap'),
       labelsLayer: $('g3d-labels'),
@@ -240,7 +255,11 @@ async function loadScene() {
   } catch (err) {
     stage.classList.add('is-fallback');
     status.hidden = false;
-    status.textContent = t('g3d.noWebgl');
+    status.innerHTML = `<span>${escapeHTML(t('g3d.noWebgl'))}</span>
+      <small class="g3d__err">${escapeHTML(String(err?.message || err).slice(0, 140))}</small>
+      <button type="button" class="btn btn--light btn--sm" data-action="g3d-retry">${escapeHTML(t('radar.retry'))}</button>`;
+    status.querySelector('[data-action="g3d-retry"]')?.addEventListener('click', () => { loadScene(); });
+    console.error('[Galería 3D]', err);
   } finally { loading = false; }
 }
 

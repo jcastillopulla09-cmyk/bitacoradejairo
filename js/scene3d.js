@@ -6,9 +6,11 @@
  *  - Arrastrar para girar, rueda/pellizco o botones para acercar.
  *  - Solo renderiza cuando la sección está en pantalla.
  */
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+// Three.js r160 (MIT) se sirve desde el propio sitio: sin CDN ni «import maps»,
+// para que funcione también en Safari de iPhone antiguos.
+import * as THREE from './vendor/three.module.min.js';
+import { OrbitControls } from './vendor/OrbitControls.js';
+import { RoomEnvironment } from './vendor/RoomEnvironment.js';
 
 const TAU = Math.PI * 2;
 const RING_RADIUS = 11;
@@ -543,9 +545,14 @@ const SPIN = { jwst: 0.12, iss: 0.1, saturnv: 0.18, falcon9: 0.18, voyager: 0.1,
 
 /* ════════════════════ ESCENA ════════════════════ */
 export async function createScene({ container, labelsLayer, objects, start = 0, labelFor, onSelect }) {
-  const isMobile = matchMedia('(max-width: 768px)').matches;
-  const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.75 : 2));
+  const isMobile = matchMedia('(max-width: 768px)').matches || (navigator.maxTouchPoints || 0) > 0;
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: isMobile ? 'default' : 'high-performance' });
+  } catch (e) {
+    renderer = new THREE.WebGLRenderer({ antialias: false }); // segundo intento, más modesto
+  }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -553,8 +560,14 @@ export async function createScene({ container, labelsLayer, objects, start = 0, 
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x030307);
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  // Reflejos ambientales (si el dispositivo no los soporta, se sigue sin ellos)
+  let hasEnv = false;
+  try {
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+    pmrem.dispose();
+    hasEnv = true;
+  } catch (e) { scene.environment = null; }
 
   const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 2000);
 
@@ -562,7 +575,7 @@ export async function createScene({ container, labelsLayer, objects, start = 0, 
   const sun = new THREE.DirectionalLight(0xfff4e6, 3.2);
   sun.position.set(30, 18, 22);
   scene.add(sun);
-  scene.add(new THREE.HemisphereLight(0x9fb4ff, 0x080808, 0.22));
+  scene.add(new THREE.HemisphereLight(0x9fb4ff, 0x080808, hasEnv ? 0.22 : 0.9));
 
   // Campo de estrellas
   {
@@ -728,8 +741,13 @@ export async function createScene({ container, labelsLayer, objects, start = 0, 
   }
   document.addEventListener('visibilitychange', () => { if (document.hidden) { renderer.setAnimationLoop(null); } else if (running) { clock.getDelta(); renderer.setAnimationLoop(frame); } });
 
+  // Si el sistema descarta el contexto WebGL (frecuente en iPhone con poca memoria), se recupera solo.
+  renderer.domElement.addEventListener('webglcontextlost', (e) => { e.preventDefault(); renderer.setAnimationLoop(null); }, false);
+  renderer.domElement.addEventListener('webglcontextrestored', () => { if (running) renderer.setAnimationLoop(frame); }, false);
+
   focus(start, true);
   setVisible(true);
+  renderer.render(scene, camera); // primer cuadro inmediato
 
   return {
     focus: (i) => focus(i),

@@ -36,6 +36,7 @@ js/launches.js    lanzamientos en vivo (Launch Library 2)
 js/simulator.js   laboratorio interactivo
 js/gallery.js     galería 3D: fichas de los objetos e interfaz
 js/scene3d.js     galería 3D: escena WebGL y modelos (Three.js)
+js/vendor/        Three.js r160 (licencia MIT) servido desde el sitio
 js/app.js         arranque y CONFIGURACIÓN (Instagram, GitHub, correo, Reels)
 data/articles.json
 assets/logo-bitacora.png   ← sube aquí el logo oficial (PNG cuadrado, 512×512)
