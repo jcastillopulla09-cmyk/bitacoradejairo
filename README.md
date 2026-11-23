@@ -15,6 +15,8 @@ Sitio estático (HTML + CSS + JavaScript ES modules, sin build) listo para **Git
 - **Lanzamientos en vivo**: próximos y recientes de todo el mundo (Launch Library 2 · The Space Devs), con
   cuenta regresiva al segundo, hora local, plataforma, órbita, misión, tripulación (misiones tripuladas),
   enlaces a la transmisión y «Eventos de misión» (acoplamientos, caminatas espaciales, aterrizajes, pruebas).
+- **Galería 3D** (Three.js): Webb, ISS, Saturno V, Falcon 9, Voyager 1, Bennu, la Luna y Saturno,
+  modelados por código; clic/toque en un objeto para volar hacia él y ver su ficha.
 - **Laboratorio «Mens et Manus»**: simulador de tránsitos de exoplanetas y explorador de corrimiento al rojo (Canvas).
 - **Reels** (formato 9:16, enlazan a Instagram) y sección **Acerca**.
 - Bilingüe **ES | EN**, modo **claro / oscuro**, y dos experiencias nativas: escritorio (navbar superior,
@@ -32,6 +34,8 @@ js/reader.js      lector integrado
 js/live-feed.js   Spaceflight News + APOD
 js/launches.js    lanzamientos en vivo (Launch Library 2)
 js/simulator.js   laboratorio interactivo
+js/gallery.js     galería 3D: fichas de los objetos e interfaz
+js/scene3d.js     galería 3D: escena WebGL y modelos (Three.js)
 js/app.js         arranque y CONFIGURACIÓN (Instagram, GitHub, correo, Reels)
 data/articles.json
 assets/logo-bitacora.png   ← sube aquí el logo oficial (PNG cuadrado, 512×512)

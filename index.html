@@ -90,6 +90,12 @@
       probe.src = 'assets/logo-bitacora.png';
     })();
   </script>
+  <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
   <script src="js/device.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
@@ -138,6 +144,7 @@
         <a href="#radar" data-nav="radar" data-i18n="nav.radar">Radar</a>
         <a href="#lanzamientos" data-nav="lanzamientos" data-i18n="nav.launches">Lanzamientos</a>
         <a href="#lab" data-nav="lab" data-i18n="nav.lab">Laboratorio</a>
+        <a href="#galeria-3d" data-nav="galeria-3d" data-i18n="nav.gallery">Galería 3D</a>
         <a href="#reels" data-nav="reels" data-i18n="nav.reels">Reels</a>
         <a href="#acerca" data-nav="acerca" data-i18n="nav.about">Acerca</a>
       </nav>
@@ -385,12 +392,42 @@
       </div>
     </section>
 
+    <!-- ═══════════════ GALERÍA 3D ═══════════════ -->
+    <section class="section" id="galeria-3d" aria-labelledby="g3d-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow mono"><span class="section__num">05</span> <span data-i18n="g3d.kicker">Galería 3D</span></p>
+          <h2 class="section__title" id="g3d-title" data-i18n="g3d.title">Objetos famosos del espacio, en tus manos</h2>
+          <p class="section__lede" data-i18n="g3d.lede">Gira, acerca y toca cada objeto para conocer su historia: telescopios, naves, cohetes, un asteroide y dos mundos del Sistema Solar.</p>
+        </header>
+        <div class="g3d">
+          <div class="g3d__stage" id="g3d-stage" tabindex="0" aria-label="Escena 3D interactiva">
+            <div class="g3d__canvas" id="g3d-canvas-wrap"></div>
+            <div class="g3d__labels" id="g3d-labels" aria-hidden="false"></div>
+            <p class="g3d__status mono" id="g3d-status" data-i18n="g3d.loading">Cargando escena 3D…</p>
+            <div class="g3d__hud mono">
+              <span class="g3d__hint" data-i18n="g3d.hint">Arrastra para girar · toca un objeto para verlo</span>
+              <div class="g3d__btns">
+                <button class="icon-btn icon-btn--sm g3d__btn" type="button" id="g3d-zoom-in" data-i18n-attr="aria-label:g3d.zoomIn" aria-label="Acercar">+</button>
+                <button class="icon-btn icon-btn--sm g3d__btn" type="button" id="g3d-zoom-out" data-i18n-attr="aria-label:g3d.zoomOut" aria-label="Alejar">−</button>
+                <button class="icon-btn icon-btn--sm g3d__btn" type="button" id="g3d-reset" data-i18n-attr="aria-label:g3d.reset" aria-label="Centrar vista"><svg aria-hidden="true"><use href="#i-refresh"/></svg></button>
+              </div>
+            </div>
+            <button class="g3d__nav g3d__nav--prev" type="button" id="g3d-prev" data-i18n-attr="aria-label:g3d.prev" aria-label="Objeto anterior"><svg aria-hidden="true"><use href="#i-back"/></svg></button>
+            <button class="g3d__nav g3d__nav--next" type="button" id="g3d-next" data-i18n-attr="aria-label:g3d.next" aria-label="Objeto siguiente"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+          <div class="g3d-chips" id="g3d-chips" role="tablist" aria-label="Objetos"></div>
+          <aside class="g3d__info" id="g3d-info" aria-live="polite"></aside>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══════════════ REELS ═══════════════ -->
-    <section class="section" id="reels" aria-labelledby="reels-title">
+    <section class="section section--surface" id="reels" aria-labelledby="reels-title">
       <div class="container">
         <header class="section__head section__head--split">
           <div>
-            <p class="eyebrow mono"><span class="section__num">05</span> <span data-i18n="reels.kicker">Divulgación visual</span></p>
+            <p class="eyebrow mono"><span class="section__num">06</span> <span data-i18n="reels.kicker">Divulgación visual</span></p>
             <h2 class="section__title" id="reels-title" data-i18n="reels.title">Reels de la bitácora</h2>
             <p class="section__lede" data-i18n="reels.lede">Ciencia en 60 segundos. Cada pieza abre directamente en Instagram.</p>
           </div>
@@ -403,7 +440,7 @@
     </section>
 
     <!-- ═══════════════ ACERCA ═══════════════ -->
-    <section class="section section--surface" id="acerca" aria-labelledby="about-title">
+    <section class="section" id="acerca" aria-labelledby="about-title">
       <div class="container about">
         <div class="about__card">
           <img class="about__logo" src="assets/logo-bitacora.png" alt="Logo oficial de Bitácora de Jairo" width="120" height="120" onerror="BJ.logoFail(this)">
@@ -412,7 +449,7 @@
           <div class="about__links" id="about-links"></div>
         </div>
         <div class="about__text">
-          <p class="eyebrow mono"><span class="section__num">06</span> <span data-i18n="about.kicker">Acerca del proyecto</span></p>
+          <p class="eyebrow mono"><span class="section__num">07</span> <span data-i18n="about.kicker">Acerca del proyecto</span></p>
           <h2 class="section__title" id="about-title" data-i18n="about.title">Una bitácora para mirar el cielo con método</h2>
           <p data-i18n="about.p1">Bitácora de Jairo nace con una misión: acercar la astrofísica y el método científico a todo el que tenga curiosidad, combinando divulgación rigurosa —con ecuaciones reales y fuentes primarias— y herramientas interactivas de código abierto.</p>
           <p data-i18n="about.p2">Cada artículo enlaza a sus referencias originales (NASA, ESA, arXiv, revistas con revisión por pares) para que puedas verificar, profundizar y formarte tu propio criterio. El laboratorio sigue el lema «Mens et Manus»: entender con la mente y comprobar con las manos.</p>

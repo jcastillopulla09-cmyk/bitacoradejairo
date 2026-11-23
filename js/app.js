@@ -9,6 +9,7 @@ import { initReader, isReaderOpen, closeReader } from './reader.js';
 import { initLiveFeed, searchNews, openQuickView } from './live-feed.js';
 import { initSimulators } from './simulator.js';
 import { initLaunches, searchLaunches, openLaunch, openEvent } from './launches.js';
+import { initGallery } from './gallery.js';
 
 /* ═══════════════ CONFIGURACIÓN EDITABLE ═══════════════
  * Cambia aquí tus enlaces. Deja `email` vacío para ocultar el botón de correo.
@@ -222,11 +223,11 @@ function initSearch() {
 /* ═══════════════ Navegación activa (scroll-spy) ═══════════════ */
 function initNav() {
   const links = [...document.querySelectorAll('[data-nav]')];
-  const ids = ['inicio', 'articulos', 'radar', 'lanzamientos', 'lab', 'reels', 'acerca'];
+  const ids = ['inicio', 'articulos', 'radar', 'lanzamientos', 'lab', 'galeria-3d', 'reels', 'acerca'];
   const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
   const setActive = (id) => {
     // En la barra inferior, «Lanzamientos» se agrupa con «Radar» y «Reels» con «Lab».
-    const GROUP = { lanzamientos: 'radar', reels: 'lab' };
+    const GROUP = { lanzamientos: 'radar', 'galeria-3d': 'lab', reels: 'lab' };
     links.forEach((a) => {
       const target = a.dataset.nav;
       const on = target === id || (GROUP[id] === target && a.closest('.bottom-nav'));
@@ -304,6 +305,7 @@ function boot() {
   initLiveFeed();
   initLaunches();
   initSimulators();
+  initGallery();
 
   window.addEventListener('langchange', () => { renderMasthead(); renderReels(); renderLinks(); });
 }
