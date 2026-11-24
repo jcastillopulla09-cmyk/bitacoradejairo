@@ -677,7 +677,7 @@ function buildEarth() {
   const [map, rough] = sphereTex(1024, 512, (x, y, z, lat) => {
     const h = fbm3(x * 2.3 + 11, y * 2.3, z * 2.3 + 3, 5) + 0.28 * fbm3(x * 7, y * 7, z * 7, 3);
     const alat = Math.abs(lat);
-    const ice = alat > 1.33 + 0.08 * noise3(x * 6, y * 6, z * 6);
+    const ice = alat > 1.36 + 0.1 * fbm3(x * 5, y * 5, z * 5, 3);
     if (ice) return [236, 241, 246, 255, 150];
     if (h > 0.13) {
       const dry = smooth(0.35, 0.75, 1 - Math.abs(alat - 0.42) * 2.6) * smooth(0.3, 0.8, noise3(x * 3 + 2, y * 3, z * 3));
@@ -770,7 +770,7 @@ function buildIceGiant(base, light, ringColor, tiltDeg, spotty) {
   g.add(planetMesh(map, { roughness: 1 }));
   g.add(atmosphere(light.map((v) => v / 255).reduce((acc, v, i) => acc | (Math.round(v * 255) << (16 - 8 * i)), 0), 3.4, 1.05, 0.8));
   if (ringColor) {
-    const ring = new THREE.Mesh(new THREE.RingGeometry(1.7, 2.05, 128), new THREE.MeshBasicMaterial({ color: ringColor, transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false }));
+    const ring = new THREE.Mesh(new THREE.RingGeometry(1.92, 1.97, 160), new THREE.MeshBasicMaterial({ color: ringColor, transparent: true, opacity: 0.16, side: THREE.DoubleSide, depthWrite: false }));
     ring.rotation.x = -Math.PI / 2; ring.raycast = () => {};
     g.add(ring);
   }
@@ -1071,6 +1071,7 @@ export async function createExplorer({ container, labelsLayer, joystick, objects
     scene.add(pivot);
     const center = L.kind === 'rocket' ? pos.clone().add(new THREE.Vector3(0, size, 0)) : pos.clone();
     if (o.id === 'jwst') {
+      pivot.updateMatrixWorld(true);
       const out = pos.clone().setY(0).normalize();
       const side = new THREE.Vector3(-out.z, 0, out.x);
       holder.lookAt(pos.clone().addScaledVector(out, -0.6).addScaledVector(side, 1).add(new THREE.Vector3(0, 0.5, 0)));

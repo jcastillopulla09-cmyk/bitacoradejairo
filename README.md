@@ -15,8 +15,9 @@ Sitio estático (HTML + CSS + JavaScript ES modules, sin build) listo para **Git
 - **Lanzamientos en vivo**: próximos y recientes de todo el mundo (Launch Library 2 · The Space Devs), con
   cuenta regresiva al segundo, hora local, plataforma, órbita, misión, tripulación (misiones tripuladas),
   enlaces a la transmisión y «Eventos de misión» (acoplamientos, caminatas espaciales, aterrizajes, pruebas).
-- **Galería 3D** (Three.js): Webb, ISS, Saturno V, Falcon 9, Voyager 1, Bennu, la Luna y Saturno,
-  modelados por código; clic/toque en un objeto para volar hacia él y ver su ficha.
+- **Explorador espacial 3D** (Three.js): Sistema Solar navegable con 18 objetos (Sol, planetas, Luna, ISS,
+  Hubble, Webb, Bennu, Voyager 1 y un hangar con Saturno V, Falcon 9 y Starship), vuelo libre con teclado o
+  joystick táctil, descubrimientos con pistas, tour guiado y pantalla completa.
 - **Laboratorio «Mens et Manus»**: simulador de tránsitos de exoplanetas y explorador de corrimiento al rojo (Canvas).
 - **Reels** (formato 9:16, enlazan a Instagram) y sección **Acerca**.
 - Bilingüe **ES | EN**, modo **claro / oscuro**, y dos experiencias nativas: escritorio (navbar superior,
