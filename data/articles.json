@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-22",
+  "updated": "2026-11-24",
   "articles": [
     {
       "slug": "universo-26700-millones-ccc-tl-james-webb",
@@ -259,7 +259,7 @@
       "slug": "supernova-sn-2026ahvu-ngc-1433-expansion-universo",
       "category": "cosmology",
       "date": "2026-11-20",
-      "featured": true,
+      "featured": false,
       "readingMinutes": 9,
       "author": "Jairo Castillo",
       "image": {
@@ -349,7 +349,7 @@
       "references": [
         {
           "source": "Science",
-          "label": "Caleb, M. et al. (2026). Host galaxy of the most distant fast radio burst, FRB 20240304B. Science.",
+          "label": "Caleb, M. et al. (2026). Science — FRB 20240304B y su galaxia anfitriona.",
           "url": "https://www.science.org/doi/10.1126/science.adz2675"
         },
         {
@@ -485,6 +485,162 @@
           "source": "Rubin Observatory",
           "label": "Legacy Survey of Space and Time (LSST) — how Rubin works.",
           "url": "https://rubinobservatory.org/explore/how-rubin-works/lsst"
+        }
+      ]
+    },
+    {
+      "slug": "cassiopeia-a-polvo-supernova-horas-antes-explosion",
+      "category": "physics",
+      "date": "2026-11-24",
+      "featured": true,
+      "readingMinutes": 8,
+      "author": "Jairo Castillo",
+      "image": {
+        "src": "https://cdn.esawebb.org/archives/images/screen/weic2624a.jpg",
+        "credit": "NASA, ESA, CSA, T. Temim (Columbia University), R. Arendt (UMBC), D. Milisavljevic (Purdue University); procesado: J. DePasquale (STScI) — Cassiopeia A (MIRI)",
+        "alt": {
+          "es": "El remanente de supernova Cassiopeia A en infrarrojo medio visto por el telescopio James Webb",
+          "en": "Supernova remnant Cassiopeia A in the mid-infrared seen by the James Webb Space Telescope"
+        }
+      },
+      "primarySource": {
+        "label": "ApJ Letters · Temim et al. (2026)",
+        "url": "https://iopscience.iop.org/article/10.3847/2041-8213/aea901"
+      },
+      "es": {
+        "title": "El polvo de Cassiopeia A cuenta lo que pasó horas antes de que la estrella explotara",
+        "dek": "El James Webb analizó, grumo por grumo, el polvo que dejó la supernova más estudiada del cielo. Su química guarda la huella de una «fusión de capas» dentro de la estrella justo antes del colapso. Y todo lo leemos con la ley de Wien: $lambda_{max} T approx 2898 mu\text{m·K}$.",
+        "body": "\n<p>Hace unos 340 años, la luz de una estrella que explotaba en la constelación de Casiopea llegó a la Tierra. Nadie dejó un registro claro de ella, pero sus restos siguen ahí: <strong>Cassiopeia A</strong> (Cas A), una nube de gas y polvo de unos 10 años luz de diámetro, a unos 11.000 años luz de distancia. Es uno de los remanentes de supernova mejor estudiados, y el 23 de noviembre de 2026 el James Webb le añadió un capítulo nuevo: <strong>el polvo de la explosión cuenta cómo era la estrella por dentro en sus últimas horas</strong>.</p>\n\n<h2>Una estrella con capas, como una cebolla</h2>\n<p>Una estrella masiva vive fusionando elementos cada vez más pesados. Cuando se acaba el hidrógeno del núcleo, empieza a fusionar helio; después carbono, neón, oxígeno y silicio, hasta llegar al hierro, que ya no libera energía. Al final de su vida, la estrella queda organizada en <strong>capas</strong>, con el hierro en el centro y elementos cada vez más ligeros hacia afuera.</p>\n<p>Los modelos predicen que, en las últimas horas, la convección puede ser tan violenta que dos capas se mezclan: por ejemplo, las que queman oxígeno y carbono. A eso se le llama <strong>fusión de capas</strong> (<em>shell merger</em>). Cambia por completo qué elementos salen disparados en la explosión, pero ocurre dentro de la estrella y muy poco antes del colapso. ¿Cómo comprobarlo siglos después?</p>\n\n<h2>Leer temperaturas con colores invisibles</h2>\n<p>Cuando la estrella explotó, parte de esos elementos se condensó en granos de polvo. Ese polvo está tibio, a unas decenas o pocos cientos de kelvin, y brilla en el infrarrojo medio. La <strong>ley de desplazamiento de Wien</strong> dice dónde está el máximo de su brillo:</p>\n$$\\lambda_{\\max}\\, T \\approx 2898\\ \\mu\\text{m·K}$$\n<p>Para un grano a $150\\ \\text{K}$, $\\lambda_{\\max} \\approx 19\\ \\mu\\text{m}$: justo el rango del instrumento MIRI del Webb. Además, cada mineral deja «huellas» propias en el espectro. Los silicatos, por ejemplo, tienen una banda característica cerca de $10\\ \\mu\\text{m}$. Así, el Webb puede distinguir de qué está hecho cada grumo de polvo, aunque cada uno tenga el tamaño de un sistema solar.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/weic2624a.jpg\" alt=\"Cassiopeia A observada en infrarrojo medio por el instrumento MIRI del Webb\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>Cassiopeia A en infrarrojo medio (JWST/MIRI). Crédito: NASA, ESA, CSA, T. Temim (Columbia), R. Arendt (UMBC), D. Milisavljevic (Purdue); procesado: J. DePasquale (STScI).</figcaption></figure>\n\n<h2>Lo que encontró el Webb</h2>\n<p>El equipo de Tea Temim (Universidad de Columbia) usó datos del ya retirado telescopio Spitzer para escoger tres regiones y las observó en detalle con el Webb:</p>\n<ul>\n  <li>Dos zonas donde la onda de choque «reversa», que viaja hacia dentro, golpea los restos de la explosión. Una está dominada por <strong>polvo de sílice</strong> y la otra por <strong>polvo de carbono</strong>: capas químicas distintas de la estrella original.</li>\n  <li>El «Monstruo Verde», una estructura descubierta por el propio Webb, rica en <strong>silicatos de magnesio</strong>. Este material no salió en la explosión: la estrella lo había expulsado antes de morir.</li>\n</ul>\n<p>Combinando el mapa de polvo del Webb con los rayos X del observatorio Chandra y de la misión XRISM, el patrón encaja con una fusión de capas que <strong>ya estaba en marcha muy poco antes de la explosión</strong>, posiblemente horas, y cuya huella se ve en gran parte del remanente. Los resultados se publicaron en <em>The Astrophysical Journal Letters</em>.</p>\n\n<aside class=\"callout\"><strong>Por qué importa.</strong> El hierro de tu sangre, el silicio de la arena y el oxígeno que respiras se fabricaron en estrellas como la que formó Cas A. Saber exactamente qué elementos y cuánto polvo liberan las supernovas es entender de dónde salió el material de los planetas, incluido el nuestro.</aside>\n"
+      },
+      "en": {
+        "title": "Cassiopeia A’s dust reveals what happened hours before the star exploded",
+        "dek": "James Webb analysed, clump by clump, the dust left by the sky’s best-studied supernova. Its chemistry holds the imprint of a “shell merger” inside the star just before collapse. And we read it all with Wien’s law: $lambda_{max} T approx 2898 mu\text{m·K}$.",
+        "body": "\n<p>About 340 years ago, light from a star exploding in the constellation Cassiopeia reached Earth. Nobody left a clear record of it, but its remains are still there: <strong>Cassiopeia A</strong> (Cas A), a cloud of gas and dust about 10 light-years across, some 11,000 light-years away. It is one of the best-studied supernova remnants, and on 23 November 2026 James Webb added a new chapter: <strong>the explosion’s dust tells us what the star’s interior was like in its final hours</strong>.</p>\n\n<h2>A star with layers, like an onion</h2>\n<p>A massive star lives by fusing ever heavier elements. When hydrogen runs out in the core, it starts fusing helium; then carbon, neon, oxygen and silicon, all the way to iron, which no longer releases energy. At the end of its life the star is arranged in <strong>shells</strong>, with iron at the centre and ever lighter elements further out.</p>\n<p>Models predict that in the last hours convection can become so violent that two shells mix: for example, the oxygen- and carbon-burning ones. This is called a <strong>shell merger</strong>. It completely changes which elements are blasted out in the explosion, but it happens inside the star and very shortly before collapse. How can we test it centuries later?</p>\n\n<h2>Reading temperatures with invisible colours</h2>\n<p>When the star exploded, some of those elements condensed into dust grains. That dust is lukewarm, at tens to a few hundred kelvin, and glows in the mid-infrared. <strong>Wien’s displacement law</strong> tells us where its brightness peaks:</p>\n$$\\lambda_{\\max}\\, T \\approx 2898\\ \\mu\\text{m·K}$$\n<p>For a grain at $150\\ \\text{K}$, $\\lambda_{\\max} \\approx 19\\ \\mu\\text{m}$: right in the range of Webb’s MIRI instrument. Each mineral also leaves its own “fingerprints” in the spectrum. Silicates, for instance, have a characteristic band near $10\\ \\mu\\text{m}$. So Webb can tell what each dust clump is made of, even though each one is the size of a solar system.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/weic2624a.jpg\" alt=\"Cassiopeia A observed in the mid-infrared by Webb’s MIRI instrument\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>Cassiopeia A in the mid-infrared (JWST/MIRI). Credit: NASA, ESA, CSA, T. Temim (Columbia), R. Arendt (UMBC), D. Milisavljevic (Purdue); processing: J. DePasquale (STScI).</figcaption></figure>\n\n<h2>What Webb found</h2>\n<p>Tea Temim’s team (Columbia University) used data from the retired Spitzer telescope to choose three regions and observed them in detail with Webb:</p>\n<ul>\n  <li>Two areas where the “reverse” shock, travelling inwards, slams into the explosion debris. One is dominated by <strong>silica dust</strong> and the other by <strong>carbon dust</strong>: chemically distinct layers of the original star.</li>\n  <li>The “Green Monster”, a structure discovered by Webb itself, rich in <strong>magnesium silicates</strong>. This material was not thrown out by the explosion: the star had shed it before dying.</li>\n</ul>\n<p>Combining Webb’s dust map with X-rays from the Chandra observatory and the XRISM mission, the pattern fits a shell merger that was <strong>already under way very shortly before the explosion</strong>, possibly hours, with its imprint visible across much of the remnant. The results were published in <em>The Astrophysical Journal Letters</em>.</p>\n\n<aside class=\"callout\"><strong>Why it matters.</strong> The iron in your blood, the silicon in sand and the oxygen you breathe were made in stars like the one that formed Cas A. Knowing exactly which elements and how much dust supernovae release means understanding where the material of planets—ours included—came from.</aside>\n"
+      },
+      "references": [
+        {
+          "source": "ApJ Letters",
+          "label": "Temim, T. et al. (2026). The Astrophysical Journal Letters — polvo de Cassiopeia A con JWST/MIRI.",
+          "url": "https://iopscience.iop.org/article/10.3847/2041-8213/aea901"
+        },
+        {
+          "source": "ESA/Webb",
+          "label": "Webb shows how supernova dust chronicles star evolution (weic2624, 23 Nov 2026).",
+          "url": "https://esawebb.org/news/weic2624/"
+        },
+        {
+          "source": "ESA/Webb",
+          "label": "Cassiopeia A (MIRI image).",
+          "url": "https://esawebb.org/images/weic2624a/"
+        },
+        {
+          "source": "NASA",
+          "label": "NASA Science — Supernovae.",
+          "url": "https://science.nasa.gov/universe/stars/"
+        }
+      ]
+    },
+    {
+      "slug": "pequenos-puntos-rojos-estrellas-de-agujero-negro-webb",
+      "category": "cosmology",
+      "date": "2026-11-24",
+      "featured": false,
+      "readingMinutes": 8,
+      "author": "Jairo Castillo",
+      "image": {
+        "src": "https://cdn.esawebb.org/archives/images/screen/weic2610a.jpg",
+        "credit": "NASA, ESA, CSA, V. Kokorev (University of Texas at Austin), A. Pagan (STScI) — GLIMPSE-17775 en Abell S1063",
+        "alt": {
+          "es": "Imagen del Webb del cúmulo Abell S1063 con el pequeño punto rojo GLIMPSE-17775 señalado",
+          "en": "Webb image of galaxy cluster Abell S1063 with the little red dot GLIMPSE-17775 marked"
+        }
+      },
+      "primarySource": {
+        "label": "ApJ · Kokorev et al. (2026)",
+        "url": "https://doi.org/10.3847/1538-4357/ae4ed7"
+      },
+      "es": {
+        "title": "Los «pequeños puntos rojos» del Webb: ¿agujeros negros disfrazados de estrellas?",
+        "dek": "Desde 2022, el James Webb encuentra en el Universo joven unos objetos rojos, compactos y abundantes que parecían «romper» la cosmología. El espectro más profundo jamás tomado de uno de ellos apunta a una respuesta elegante: agujeros negros envueltos en un capullo de gas que brilla como una estrella gigante.",
+        "body": "\n<p>Apenas empezó a trabajar, el James Webb encontró algo que nadie había pedido: puntos de luz <strong>muy rojos y muy compactos</strong>, abundantes en el Universo de hace más de 12.000 millones de años. Los astrónomos los bautizaron <strong>«pequeños puntos rojos»</strong> (<em>little red dots</em>, LRD). Si su luz venía de estrellas, esas galaxias serían demasiado masivas para su época, y algunos titulares dijeron que «rompían» la cosmología. Pero había otra posibilidad: que la luz viniera de un agujero negro creciendo a toda velocidad.</p>\n\n<h2>Una lupa natural y 40 líneas espectrales</h2>\n<p>En junio de 2026, un equipo liderado por Vasily Kokorev (Universidad de Texas en Austin) publicó en <em>The Astrophysical Journal</em> el espectro más detallado obtenido de un LRD: <strong>GLIMPSE-17775</strong>, a corrimiento al rojo $z = 3{,}5$, es decir, unos 1.800 millones de años después del Big Bang. La suerte ayudó: el objeto está detrás del cúmulo de galaxias Abell S1063, cuya gravedad actúa como una <strong>lente</strong> y amplifica su luz. Las 30 horas de observación del Webb rindieron como si fueran unas 80. El resultado: más de <strong>40 líneas espectrales</strong>, entre ellas un «bosque de hierro» de 16 líneas.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/weic2610b.jpg\" alt=\"Espectro del pequeño punto rojo GLIMPSE-17775 obtenido por el Webb\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>El espectro de GLIMPSE-17775: más de 40 líneas, incluido un «bosque de hierro». Crédito: NASA, ESA, CSA, V. Kokorev (UT Austin), A. Pagan (STScI).</figcaption></figure>\n\n<h2>Las pistas de una «estrella de agujero negro»</h2>\n<ul>\n  <li><strong>Líneas ensanchadas por electrones.</strong> Las líneas de hidrógeno, oxígeno y helio no encajan con una simple nube de gas girando. Encajan con la <em>dispersión por electrones</em>, típica de un capullo de gas denso y en capas.</li>\n  <li><strong>Un motor muy energético.</strong> Las 16 líneas de hierro y ciertas líneas de oxígeno requieren una fuente de alta energía, como un agujero negro que traga materia rápidamente.</li>\n  <li><strong>Helio que absorbe y fluoresce.</strong> Otra señal de un medio denso que envuelve una fuente potente.</li>\n  <li><strong>Silencio en rayos X.</strong> La mayoría de los LRD casi no emite rayos X. El capullo de gas los absorbería.</li>\n</ul>\n<p>La idea es que un agujero negro supermasivo crece rodeado de tanto gas que el conjunto brilla como una «estrella» gigantesca. La luz más azul que también se ve vendría de las estrellas de una galaxia anfitriona.</p>\n\n<h2>Cuánto puede brillar un agujero negro</h2>\n<p>Un agujero negro que traga materia no puede brillar sin límite: la presión de su propia luz termina frenando el gas que cae. Ese techo es la <strong>luminosidad de Eddington</strong>:</p>\n$$L_{\\text{Edd}} = \\frac{4\\pi G M m_p c}{\\sigma_T} \\approx 1{,}26\\times10^{31}\\ \\text{W}\\;\\left(\\frac{M}{M_\\odot}\\right)$$\n<p>donde $m_p$ es la masa del protón y $\\sigma_T$ la sección eficaz de Thomson del electrón. Si las líneas anchas se deben en parte a la dispersión por electrones y no solo a la rotación, <strong>los agujeros negros no necesitan ser tan masivos</strong> como se creía para explicar lo que vemos. Y el problema cosmológico se desinfla. «Todo encaja, nada está roto», resumió Kokorev.</p>\n\n<aside class=\"callout\"><strong>Ciencia en construcción.</strong> No todos los astrónomos están convencidos, y hay otras propuestas sobre qué alimenta a estos objetos. Pero GLIMPSE-17775 es la primera pieza que reúne todas las pistas a la vez. En uno o dos años, con más espectros como este, podríamos tener la respuesta.</aside>\n"
+      },
+      "en": {
+        "title": "Webb’s “little red dots”: black holes disguised as stars?",
+        "dek": "Since 2022, James Webb has been finding red, compact, abundant objects in the young Universe that seemed to “break” cosmology. The deepest spectrum ever taken of one points to an elegant answer: black holes wrapped in a cocoon of gas that shines like a giant star.",
+        "body": "\n<p>As soon as it started work, James Webb found something nobody had ordered: <strong>very red, very compact</strong> points of light, abundant in the Universe of more than 12 billion years ago. Astronomers named them <strong>“little red dots”</strong> (LRDs). If their light came from stars, those galaxies would be far too massive for their epoch, and some headlines said they “broke” cosmology. But there was another possibility: that the light came from a black hole growing at full speed.</p>\n\n<h2>A natural magnifying glass and 40 spectral lines</h2>\n<p>In June 2026 a team led by Vasily Kokorev (University of Texas at Austin) published in <em>The Astrophysical Journal</em> the most detailed spectrum ever obtained of an LRD: <strong>GLIMPSE-17775</strong>, at redshift $z = 3.5$, about 1.8 billion years after the Big Bang. Luck helped: the object sits behind galaxy cluster Abell S1063, whose gravity acts as a <strong>lens</strong> and magnifies its light. Webb’s 30 hours of observation delivered the equivalent of about 80. The result: more than <strong>40 spectral lines</strong>, including an “iron forest” of 16 lines.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/weic2610b.jpg\" alt=\"Spectrum of the little red dot GLIMPSE-17775 obtained by Webb\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>The spectrum of GLIMPSE-17775: more than 40 lines, including an “iron forest”. Credit: NASA, ESA, CSA, V. Kokorev (UT Austin), A. Pagan (STScI).</figcaption></figure>\n\n<h2>The clues of a “black hole star”</h2>\n<ul>\n  <li><strong>Lines broadened by electrons.</strong> The hydrogen, oxygen and helium lines do not fit a simple rotating gas cloud. They fit <em>electron scattering</em>, typical of a dense, layered gas cocoon.</li>\n  <li><strong>A very energetic engine.</strong> The 16 iron lines and certain oxygen lines require a high-energy source, such as a black hole rapidly swallowing matter.</li>\n  <li><strong>Helium absorbing and fluorescing.</strong> Another sign of a dense medium wrapped around a powerful source.</li>\n  <li><strong>X-ray silence.</strong> Most LRDs emit almost no X-rays. The gas cocoon would absorb them.</li>\n</ul>\n<p>The idea is that a supermassive black hole grows surrounded by so much gas that the whole thing shines like a gigantic “star”. The bluer light also seen would come from the stars of a host galaxy.</p>\n\n<h2>How bright can a black hole get?</h2>\n<p>A black hole swallowing matter cannot shine without limit: the pressure of its own light eventually slows the infalling gas. That ceiling is the <strong>Eddington luminosity</strong>:</p>\n$$L_{\\text{Edd}} = \\frac{4\\pi G M m_p c}{\\sigma_T} \\approx 1.26\\times10^{31}\\ \\text{W}\\;\\left(\\frac{M}{M_\\odot}\\right)$$\n<p>where $m_p$ is the proton mass and $\\sigma_T$ the electron’s Thomson cross-section. If the broad lines are partly due to electron scattering and not only to rotation, <strong>the black holes do not need to be as massive</strong> as thought to explain what we see. And the cosmological problem deflates. “Everything fits, nothing is broken,” Kokorev summed up.</p>\n\n<aside class=\"callout\"><strong>Science in progress.</strong> Not every astronomer is convinced, and there are other proposals about what powers these objects. But GLIMPSE-17775 is the first piece that brings all the clues together. In a year or two, with more spectra like this one, we may have the answer.</aside>\n"
+      },
+      "references": [
+        {
+          "source": "ApJ",
+          "label": "Kokorev, V. et al. (2026). The Astrophysical Journal — espectro de GLIMPSE-17775.",
+          "url": "https://doi.org/10.3847/1538-4357/ae4ed7"
+        },
+        {
+          "source": "ESA/Webb",
+          "label": "Webb finds strongest evidence yet for “black hole stars” (weic2610, 10 Jun 2026).",
+          "url": "https://esawebb.org/news/weic2610/"
+        },
+        {
+          "source": "ESA/Webb",
+          "label": "GLIMPSE-17775 in Abell S1063 (NIRCam image, annotated).",
+          "url": "https://esawebb.org/images/weic2610a/"
+        },
+        {
+          "source": "arXiv · Nature",
+          "label": "Labbé, I. et al. (2023). A population of red candidate massive galaxies ~600 Myr after the Big Bang. Nature 616, 266.",
+          "url": "https://arxiv.org/abs/2207.12446"
+        }
+      ]
+    },
+    {
+      "slug": "choques-que-destrozan-planetas-discos-de-escombros-extremos",
+      "category": "exoplanets",
+      "date": "2026-11-24",
+      "featured": false,
+      "readingMinutes": 8,
+      "author": "Jairo Castillo",
+      "image": {
+        "src": "https://cdn.esawebb.org/archives/images/screen/weic2618a.jpg",
+        "credit": "NASA, ESA, CSA, J. Olmsted (STScI) — Disco de escombros extremo (concepto artístico)",
+        "alt": {
+          "es": "Ilustración de un choque entre planetas en formación que genera un disco de polvo caliente alrededor de una estrella joven",
+          "en": "Illustration of a collision between forming planets producing a disc of warm dust around a young star"
+        }
+      },
+      "primarySource": {
+        "label": "ApJ · Su et al. (2026)",
+        "url": "https://doi.org/10.3847/1538-4357/ae88fe"
+      },
+      "es": {
+        "title": "Choques que destrozan planetas: el Webb estudia los «discos extremos» donde nacen mundos como la Tierra y la Luna",
+        "dek": "La Luna probablemente nació de un choque brutal entre la Tierra joven y un planeta del tamaño de Marte. Ahora el Webb observó 21 sistemas jóvenes donde están ocurriendo choques parecidos, y su polvo revela cuánta energía hubo en cada impacto.",
+        "body": "\n<p>Hace unos 4.500 millones de años, un cuerpo del tamaño de Marte, al que llamamos <strong>Tea (Theia)</strong>, chocó contra la Tierra recién formada. El impacto vaporizó enormes cantidades de roca, y parte de ese material terminó formando la Luna. No podemos volver atrás para verlo, pero sí podemos mirar otros sistemas jóvenes donde algo parecido está pasando ahora mismo.</p>\n\n<h2>Discos de escombros «extremos»</h2>\n<p>Alrededor de las estrellas jóvenes hay primero un disco de gas y polvo donde se forman los planetas. Con el tiempo, el gas desaparece y queda un <strong>disco de escombros</strong>, normalmente frío y lejano, como los de Vega o Fomalhaut. Pero el telescopio Spitzer descubrió una rareza: los <strong>discos de escombros extremos</strong>, con muchísimo polvo caliente muy cerca de la estrella, justo en la zona donde orbitan los planetas rocosos.</p>\n<p>¿Por qué «caliente»? Un grano de polvo a una distancia $d$ de una estrella de luminosidad $L$ alcanza aproximadamente la temperatura de equilibrio</p>\n$$T \\approx 278\\ \\text{K}\\;\\left(\\frac{L}{L_\\odot}\\right)^{1/4}\\left(\\frac{d}{1\\ \\text{UA}}\\right)^{-1/2}$$\n<p>A 1 UA de una estrella como el Sol, eso da unos 280 K (unos 5 °C). Con la ley de Wien, ese polvo brilla con un máximo cerca de $10\\ \\mu\\text{m}$, en el infrarrojo medio que el Webb mide con precisión.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/weic2618b.jpg\" alt=\"Gráfico de la composición de los discos de escombros extremos según su edad\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>Composición de los discos de escombros extremos a lo largo del tiempo: ricos en sílice (impactos violentos) frente a pobres en sílice (roces). Crédito: NASA, ESA, CSA, J. Olmsted (STScI).</figcaption></figure>\n\n<h2>Lo que dicen sus minerales</h2>\n<p>El equipo de Kate Su (Space Science Institute, EE. UU.) reunió <strong>21 discos extremos</strong>: cinco del archivo de Spitzer y 16 observados por el Webb. Son raros, porque solo se ven en cerca del 1 % de las estrellas jóvenes. Al analizar su mineralogía encontraron dos familias:</p>\n<ul>\n  <li><strong>Ricos en sílice</strong> (como el vidrio volcánico u obsidiana), cerca de un tercio. Indican <strong>impactos de alta energía entre cuerpos del tamaño de Marte</strong> que vaporizan roca. Solo aparecen en estrellas de menos de 300 millones de años: la época en que se formaron la Tierra y la Luna.</li>\n  <li><strong>Pobres en sílice</strong> (como la forsterita, que forma granos verdes), los otros dos tercios. Apuntan a <strong>choques más suaves, casi roces, entre cuerpos del tamaño de la Luna</strong>. Persisten a muchas edades y su brillo cambia más.</li>\n</ul>\n\n<h2>La energía de un choque planetario</h2>\n<p>La velocidad mínima de un impacto contra un planeta es su velocidad de escape, porque eso es lo que gana un objeto que cae desde lejos:</p>\n$$v_{\\text{imp}}^2 = v_\\infty^2 + v_{\\text{esc}}^2, \\qquad v_{\\text{esc}} = \\sqrt{\\frac{2GM}{R}}$$\n<p>Para la Tierra, $v_{\\text{esc}} \\approx 11{,}2\\ \\text{km/s}$. Un cuerpo de la masa de Marte ($6{,}4\\times10^{23}$ kg) chocando a unos $10\\ \\text{km/s}$ liberaría $E = \\tfrac12 m v^2 \\approx 3\\times10^{31}$ J: suficiente para fundir y vaporizar buena parte de ambos mundos. Esa es la firma que dejan los discos ricos en sílice.</p>\n\n<aside class=\"callout\"><strong>Nuestra historia, en otras estrellas.</strong> El estudio, publicado en <em>The Astrophysical Journal</em>, sugiere que el Sistema Solar pudo pasar por más de una fase así: una de impactos gigantes, como el que formó la Luna, y quizá otra más tardía, cuando la migración de los planetas gigantes desordenó las órbitas de los cuerpos pequeños. Mirar otras estrellas jóvenes es, literalmente, mirar nuestro pasado.</aside>\n"
+      },
+      "en": {
+        "title": "Planet-shattering crashes: Webb studies the “extreme discs” where worlds like Earth and the Moon are born",
+        "dek": "The Moon probably formed in a brutal collision between the young Earth and a Mars-sized planet. Now Webb has observed 21 young systems where similar crashes are happening, and their dust reveals how much energy each impact carried.",
+        "body": "\n<p>About 4.5 billion years ago a Mars-sized body, which we call <strong>Theia</strong>, smashed into the newly formed Earth. The impact vaporised huge amounts of rock, and part of that material ended up forming the Moon. We cannot go back to watch it, but we can look at other young systems where something similar is happening right now.</p>\n\n<h2>“Extreme” debris discs</h2>\n<p>Young stars are first surrounded by a disc of gas and dust where planets form. Over time the gas disappears, leaving a <strong>debris disc</strong>, usually cold and distant, like those of Vega or Fomalhaut. But the Spitzer telescope discovered an oddity: <strong>extreme debris discs</strong>, with huge amounts of warm dust very close to the star, right where rocky planets orbit.</p>\n<p>Why “warm”? A dust grain at distance $d$ from a star of luminosity $L$ reaches roughly the equilibrium temperature</p>\n$$T \\approx 278\\ \\text{K}\\;\\left(\\frac{L}{L_\\odot}\\right)^{1/4}\\left(\\frac{d}{1\\ \\text{AU}}\\right)^{-1/2}$$\n<p>At 1 AU from a Sun-like star that gives about 280 K (around 5 °C). By Wien’s law, that dust glows with a peak near $10\\ \\mu\\text{m}$, in the mid-infrared that Webb measures precisely.</p>\n\n<figure class=\"figure\"><img src=\"https://cdn.esawebb.org/archives/images/screen/weic2618b.jpg\" alt=\"Chart of the composition of extreme debris discs by age\" loading=\"lazy\" decoding=\"async\" onerror=\"BJ.imgFail(this)\"><figcaption>Composition of extreme debris discs over time: silica-rich (violent impacts) versus silica-poor (grazing collisions). Credit: NASA, ESA, CSA, J. Olmsted (STScI).</figcaption></figure>\n\n<h2>What their minerals say</h2>\n<p>Kate Su’s team (Space Science Institute, USA) assembled <strong>21 extreme discs</strong>: five from Spitzer’s archive and 16 observed by Webb. They are rare, seen around only about 1% of young stars. Analysing their mineralogy, the team found two families:</p>\n<ul>\n  <li><strong>Silica-rich</strong> (like volcanic glass or obsidian), about a third. They point to <strong>high-energy impacts between Mars-sized bodies</strong> that vaporise rock. They appear only around stars younger than 300 million years: the era when Earth and the Moon formed.</li>\n  <li><strong>Silica-poor</strong> (like forsterite, which forms green grains), the other two thirds. They point to <strong>gentler, grazing collisions between Moon-sized bodies</strong>. They persist across many ages and their brightness varies more.</li>\n</ul>\n\n<h2>The energy of a planetary crash</h2>\n<p>The minimum speed of an impact on a planet is its escape velocity, because that is what an object falling from far away gains:</p>\n$$v_{\\text{imp}}^2 = v_\\infty^2 + v_{\\text{esc}}^2, \\qquad v_{\\text{esc}} = \\sqrt{\\frac{2GM}{R}}$$\n<p>For Earth, $v_{\\text{esc}} \\approx 11.2\\ \\text{km/s}$. A body with the mass of Mars ($6.4\\times10^{23}$ kg) striking at about $10\\ \\text{km/s}$ would release $E = \\tfrac12 m v^2 \\approx 3\\times10^{31}$ J: enough to melt and vaporise much of both worlds. That is the signature silica-rich discs leave behind.</p>\n\n<aside class=\"callout\"><strong>Our story, around other stars.</strong> The study, published in <em>The Astrophysical Journal</em>, suggests the Solar System may have gone through more than one such phase: one of giant impacts, like the one that formed the Moon, and perhaps a later one when the giant planets’ migration scrambled the orbits of small bodies. Looking at other young stars is, quite literally, looking at our past.</aside>\n"
+      },
+      "references": [
+        {
+          "source": "ApJ",
+          "label": "Su, K. et al. (2026). The Astrophysical Journal — discos de escombros extremos con JWST.",
+          "url": "https://doi.org/10.3847/1538-4357/ae88fe"
+        },
+        {
+          "source": "ESA/Webb",
+          "label": "Webb provides crash course on planet-shattering collisions (weic2618, 1 Oct 2026).",
+          "url": "https://esawebb.org/news/weic2618/"
+        },
+        {
+          "source": "ESA/Webb",
+          "label": "Extreme debris disc (artist’s concept).",
+          "url": "https://esawebb.org/images/weic2618a/"
+        },
+        {
+          "source": "NASA",
+          "label": "NASA Science — Earth’s Moon: formation.",
+          "url": "https://science.nasa.gov/moon/formation/"
         }
       ]
     }

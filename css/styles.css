@@ -1149,3 +1149,98 @@ html[data-device="tablet"] .g3d__stage { aspect-ratio: auto; height: 68vw; max-h
 .g3d__stage.is-fallback .g3d__status { display: flex; align-items: center; justify-content: center; }
 .g3d__err { font-size: 10.5px; color: rgba(255, 255, 255, 0.45); max-width: 34ch; }
 .g3d__status .btn { pointer-events: auto; }
+
+/* ───────────── 19. Explorador espacial 3D ───────────── */
+.g3d__stage { min-height: 640px; }
+.g3d__top {
+  position: absolute; top: 12px; left: 12px; right: 12px; z-index: 4;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; pointer-events: none;
+}
+.g3d-progress {
+  pointer-events: auto; display: grid; grid-template-columns: auto auto; gap: 4px 10px; align-items: center;
+  padding: 8px 12px; border-radius: 10px; color: #fff; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+  background: rgba(8, 8, 12, 0.6); border: 1px solid rgba(255, 255, 255, 0.16); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.g3d-progress__count { font-size: 13px; font-weight: 500; text-align: right; }
+.g3d-progress__bar { grid-column: 1 / -1; display: block; width: 150px; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, 0.15); overflow: hidden; }
+.g3d-progress__fill { display: block; height: 100%; width: 0; background: #fff; transition: width 0.6s var(--ease); }
+.g3d__actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; pointer-events: auto; }
+.g3d-pill {
+  display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 13px; border-radius: 999px;
+  color: #fff; font-size: 12.5px; font-weight: 500; white-space: nowrap;
+  background: rgba(8, 8, 12, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.g3d-pill svg { width: 14px; height: 14px; }
+.g3d-pill:hover { background: rgba(255, 255, 255, 0.14); }
+.g3d-pill[aria-pressed="true"] { background: #fff; color: #0A0A0A; border-color: #fff; }
+.g3d-pill--icon { width: 36px; padding: 0; justify-content: center; }
+.g3d-pill--icon svg { width: 18px; height: 18px; }
+html[data-input="touch"] .g3d-pill { height: 40px; }
+html[data-input="touch"] .g3d-pill--icon { width: 40px; }
+.g3d__hint--mouse { max-width: 70%; line-height: 1.5; }
+html[data-input="touch"] .g3d__hint--mouse { display: none; }
+.g3d__scale { position: absolute; left: 14px; top: 76px; bottom: auto; z-index: 3; font-size: 10px; color: rgba(255, 255, 255, 0.38); letter-spacing: 0.04em; pointer-events: none; }
+html[data-input="touch"] .g3d__scale { max-width: 60%; }
+.g3d-label.is-unknown { border-style: dashed; color: rgba(255, 255, 255, 0.75); }
+.g3d-label.is-unknown .g3d-label__text { letter-spacing: 0.2em; }
+
+/* Joystick táctil */
+.g3d-joy {
+  position: absolute; left: 16px; bottom: 16px; z-index: 5; width: 104px; height: 104px; border-radius: 50%;
+  display: none; place-items: center; touch-action: none; user-select: none; -webkit-user-select: none;
+  background: rgba(8, 8, 12, 0.45); border: 1px solid rgba(255, 255, 255, 0.22); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+html[data-input="touch"] .g3d-joy, .g3d__stage.is-immersive .g3d-joy { display: grid; }
+html[data-input="mouse"] .g3d__stage.is-immersive .g3d-joy { display: none; }
+.g3d-joy__ring { position: absolute; inset: 18px; border-radius: 50%; border: 1px dashed rgba(255, 255, 255, 0.25); }
+.g3d-joy__knob { width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.92); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); transition: transform 0.12s; }
+.g3d-joy__label { position: absolute; bottom: -18px; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); }
+html[data-input="touch"] .g3d__hud { left: 136px; }
+
+/* Aviso de descubrimiento */
+.g3d-toast {
+  position: absolute; left: 50%; top: 64px; z-index: 6; transform: translate(-50%, -12px); opacity: 0; pointer-events: none;
+  padding: 10px 18px; border-radius: 999px; background: #fff; color: #0A0A0A; font-size: 14px; white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); transition: opacity 0.3s, transform 0.3s var(--ease);
+}
+.g3d-toast .mono { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 6px; }
+.g3d-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+/* Lista de objetos */
+.g3d-chip.is-unknown { border-style: dashed; color: var(--muted); }
+.g3d-chip__mark { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.g3d-chip[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+.g3d-chip[aria-pressed="true"] .g3d-chip__mark { color: inherit; }
+.g3d-chip__q { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em; }
+
+/* Misión */
+.g3d-mission { margin-top: 6px; padding: 14px; border: 1px dashed var(--border-strong); border-radius: 10px; display: grid; gap: 8px; }
+.g3d-mission:empty { display: none; }
+.g3d-mission__text { font-size: 0.92rem; line-height: 1.55; }
+.g3d-mission .btn { justify-self: start; }
+.g3d__info { overflow: auto; max-height: 760px; }
+.g3d__info .btn--ghost.btn--sm[href] { margin-top: 0; }
+.g3d-reset-link { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; font: inherit; }
+
+/* Pantalla completa (sin Fullscreen API, funciona en iPhone) */
+html.g3d-immersive, html.g3d-immersive body { overflow: hidden; }
+.g3d__stage.is-immersive {
+  position: fixed; inset: 0; z-index: 250; min-height: 0; height: auto; max-height: none; aspect-ratio: auto;
+  border-radius: 0; border: 0; padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
+}
+.g3d__stage.is-immersive .g3d__top { top: calc(12px + var(--safe-top)); }
+.g3d__stage.is-immersive .g3d-joy { bottom: calc(22px + var(--safe-bottom)); }
+html.g3d-immersive .bottom-nav, html.g3d-immersive .topbar { visibility: hidden; }
+
+html[data-device="tablet"] .g3d__stage { min-height: 0; }
+html[data-device="mobile"] .g3d__stage { height: 128vw; max-height: 640px; min-height: 420px; }
+html[data-device="mobile"] .g3d__stage.is-immersive { height: auto; max-height: none; }
+html[data-device="mobile"] .g3d-pill span { display: none; }
+html[data-device="mobile"] .g3d-pill { width: 40px; padding: 0; justify-content: center; }
+html[data-device="mobile"] .g3d-pill svg { width: 16px; height: 16px; }
+html[data-device="mobile"] .g3d-progress__bar { width: 110px; }
+html[data-device="mobile"] .g3d__nav { top: auto; bottom: 150px; width: 40px; height: 40px; }
+html[data-device="mobile"] .g3d__nav--prev { left: auto; right: 60px; }
+html[data-device="mobile"] .g3d-toast { top: 70px; font-size: 13px; }
+html[data-device="mobile"] .g3d__info { max-height: none; }

@@ -138,7 +138,7 @@
         <a href="#radar" data-nav="radar" data-i18n="nav.radar">Radar</a>
         <a href="#lanzamientos" data-nav="lanzamientos" data-i18n="nav.launches">Lanzamientos</a>
         <a href="#lab" data-nav="lab" data-i18n="nav.lab">Laboratorio</a>
-        <a href="#galeria-3d" data-nav="galeria-3d" data-i18n="nav.gallery">Galería 3D</a>
+        <a href="#galeria-3d" data-nav="galeria-3d" data-i18n="nav.gallery">Explorador 3D</a>
         <a href="#reels" data-nav="reels" data-i18n="nav.reels">Reels</a>
         <a href="#acerca" data-nav="acerca" data-i18n="nav.about">Acerca</a>
       </nav>
@@ -386,33 +386,53 @@
       </div>
     </section>
 
-    <!-- ═══════════════ GALERÍA 3D ═══════════════ -->
+    <!-- ═══════════════ EXPLORADOR ESPACIAL 3D ═══════════════ -->
     <section class="section" id="galeria-3d" aria-labelledby="g3d-title">
       <div class="container">
         <header class="section__head">
-          <p class="eyebrow mono"><span class="section__num">05</span> <span data-i18n="g3d.kicker">Galería 3D</span></p>
-          <h2 class="section__title" id="g3d-title" data-i18n="g3d.title">Objetos famosos del espacio, en tus manos</h2>
-          <p class="section__lede" data-i18n="g3d.lede">Gira, acerca y toca cada objeto para conocer su historia: telescopios, naves, cohetes, un asteroide y dos mundos del Sistema Solar.</p>
+          <p class="eyebrow mono"><span class="section__num">05</span> <span data-i18n="g3d.kicker">Explorador espacial 3D</span></p>
+          <h2 class="section__title" id="g3d-title" data-i18n="g3d.title">Viaja por el Sistema Solar y descubre sus secretos</h2>
+          <p class="section__lede" data-i18n="g3d.lede">Vuela libremente entre el Sol, los planetas, telescopios, naves y cohetes. Acércate a cada objeto para descubrirlo, sigue las pistas de tu misión o deja que el tour guiado te lleve.</p>
         </header>
         <div class="g3d">
-          <div class="g3d__stage" id="g3d-stage" tabindex="0" aria-label="Escena 3D interactiva">
+          <div class="g3d__stage" id="g3d-stage" tabindex="0" aria-label="Explorador 3D del Sistema Solar">
             <div class="g3d__canvas" id="g3d-canvas-wrap"></div>
-            <div class="g3d__labels" id="g3d-labels" aria-hidden="false"></div>
+            <div class="g3d__labels" id="g3d-labels"></div>
             <p class="g3d__status mono" id="g3d-status" data-i18n="g3d.loading">Cargando escena 3D…</p>
+
+            <div class="g3d__top">
+              <div class="g3d-progress mono" id="g3d-progress" aria-live="polite">
+                <span class="g3d-progress__label" data-i18n="g3d.found">Descubiertos</span>
+                <span class="g3d-progress__count">2/18</span>
+                <span class="g3d-progress__bar"><span class="g3d-progress__fill"></span></span>
+              </div>
+              <div class="g3d__actions">
+                <button class="g3d-pill" type="button" id="g3d-tour" aria-pressed="false"><svg aria-hidden="true"><use href="#i-play"/></svg><span data-i18n="g3d.tour">Tour guiado</span></button>
+                <button class="g3d-pill" type="button" id="g3d-overview"><svg aria-hidden="true"><use href="#i-radar"/></svg><span data-i18n="g3d.overview">Vista general</span></button>
+                <button class="g3d-pill g3d-pill--icon" type="button" id="g3d-full" aria-pressed="false" data-i18n-attr="aria-label:g3d.full" aria-label="Pantalla completa">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+            </div>
+
             <div class="g3d__hud mono">
-              <span class="g3d__hint" data-i18n="g3d.hint">Arrastra para girar · toca un objeto para verlo</span>
+              <span class="g3d__hint g3d__hint--mouse" data-i18n="g3d.hintMouse">W A S D o flechas para volar · Q/E subir/bajar · Shift turbo · arrastra para mirar · clic en un objeto para viajar</span>
               <div class="g3d__btns">
                 <button class="icon-btn icon-btn--sm g3d__btn" type="button" id="g3d-zoom-in" data-i18n-attr="aria-label:g3d.zoomIn" aria-label="Acercar">+</button>
                 <button class="icon-btn icon-btn--sm g3d__btn" type="button" id="g3d-zoom-out" data-i18n-attr="aria-label:g3d.zoomOut" aria-label="Alejar">−</button>
-                <button class="icon-btn icon-btn--sm g3d__btn" type="button" id="g3d-reset" data-i18n-attr="aria-label:g3d.reset" aria-label="Centrar vista"><svg aria-hidden="true"><use href="#i-refresh"/></svg></button>
               </div>
             </div>
+            <div class="g3d-joy" id="g3d-joy" aria-hidden="true"><span class="g3d-joy__ring"></span><span class="g3d-joy__knob"></span><span class="g3d-joy__label mono" data-i18n="g3d.joy">Volar</span></div>
+
             <button class="g3d__nav g3d__nav--prev" type="button" id="g3d-prev" data-i18n-attr="aria-label:g3d.prev" aria-label="Objeto anterior"><svg aria-hidden="true"><use href="#i-back"/></svg></button>
             <button class="g3d__nav g3d__nav--next" type="button" id="g3d-next" data-i18n-attr="aria-label:g3d.next" aria-label="Objeto siguiente"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <div class="g3d-toast" id="g3d-toast" role="status" aria-live="polite"></div>
+            <p class="g3d__scale mono" data-i18n="g3d.scale">Tamaños y distancias no están a escala · los cohetes sí, entre ellos</p>
           </div>
-          <div class="g3d-chips" id="g3d-chips" role="tablist" aria-label="Objetos"></div>
+          <div class="g3d-chips" id="g3d-chips" aria-label="Objetos del explorador"></div>
           <aside class="g3d__info" id="g3d-info" aria-live="polite"></aside>
         </div>
+        <p class="credit-line mono"><span data-i18n="g3d.credit">Modelos procedurales de Bitácora de Jairo · datos: NASA, ESA, SpaceX</span> · <button type="button" class="g3d-reset-link" id="g3d-reset-progress" data-i18n="g3d.resetProgress">Reiniciar descubrimientos</button></p>
       </div>
     </section>
 
